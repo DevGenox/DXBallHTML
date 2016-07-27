@@ -1,0 +1,2012 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>DXBall</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <meta charset="utf-8" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Bangers);
+
+        .brick {
+            width: 40px;
+            position: absolute;
+            height: 20px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00b7ea+0,009ec3+100;Blue+3D+%2315 */
+            background: rgb(0,183,234); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(0,183,234,1) 0%, rgba(0,158,195,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
+        }
+
+        .brickBlue {
+            width: 40px;
+            position: absolute;
+            height: 20px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00b7ea+0,009ec3+100;Blue+3D+%2315 */
+            background: rgb(0,183,234); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(0,183,234,1) 0%, rgba(0,158,195,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
+        }
+
+            .brickBlue:hover {
+                -webkit-box-shadow: 1px 1px 60px 0 rgba(0, 192, 235, 1);
+                box-shadow: 1px 1px 60px 0 rgba(0, 192, 235, 1);
+            }
+
+        .brickOrange {
+            width: 40px;
+            position: absolute;
+            height: 20px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffa84c+0,ff7b0d+100;Orange+3D */
+            background: rgb(255,168,76); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(255,168,76,1) 0%, rgba(255,123,13,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
+        }
+
+            .brickOrange:hover {
+                -webkit-box-shadow: 1px 1px 60px 0 #ff8929;
+                box-shadow: 1px 1px 60px 0 #ff8929;
+            }
+
+        .brick2 {
+            width: 40px;
+            position: absolute;
+            height: 20px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffa84c+0,ff7b0d+100;Orange+3D */
+            background: rgb(255,168,76); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(255,168,76,1) 0%, rgba(255,123,13,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
+        }
+
+        .wall {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            width: 40px;
+            height: 20px;
+            overflow: hidden;
+            border: none;
+            position: absolute;
+            -webkit-border-radius: 0 30px;
+            border-radius: 0 30px;
+            color: rgba(255,255,255,1);
+            text-align: center;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            background: #ff9900;
+            -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.3) inset;
+            box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.3) inset;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+
+        #antidaralma {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            width: 24px;
+            height: 24px;
+            overflow: hidden;
+            border: none;
+            position: absolute;
+            -webkit-border-radius: 4px 0 4px 4px;
+            border-radius: 4px 0 4px 4px;
+            color: rgba(255,255,255,1);
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            background: rgba(242,21,21,0.82);
+            -webkit-box-shadow: 0 0 1px 0 rgba(204,46,46,1);
+            box-shadow: 0 0 1px 0 rgba(204,46,46,1);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+
+        #genisletme {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            width: 24px;
+            height: 24px;
+            overflow: hidden;
+            border: none;
+            position: absolute;
+            color: rgba(255,255,255,1);
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            background: rgba(242,144,24,0.7);
+            -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3);
+            box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+
+        #player {
+            width: 90px;
+            height: 15px;
+            position: absolute;
+            top: 585px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffd65e+0,febf04+100;Yellow+3D+%232 */
+            background: rgb(255,214,94); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(255,214,94,1) 0%, rgba(254,191,4,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(255,214,94,1) 0%,rgba(254,191,4,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(255,214,94,1) 0%,rgba(254,191,4,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+        }
+
+        #ball {
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            top: 555px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
+            background: rgb(255,48,25); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(255,48,25,1) 0%, rgba(207,4,4,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+            -moz-border-radius: 12px;
+            -webkit-border-radius: 12px;
+            border-radius: 12px;
+        }
+
+        #special {
+            background-color: blue;
+        }
+
+        .unselectable {
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        #tgScores {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #999;
+        }
+
+            #tgScores td {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                padding: 10px 5px;
+                border-style: solid;
+                border-width: 0px;
+                overflow: hidden;
+                word-break: normal;
+                border-color: #999;
+                color: #444;
+                background-color: #F7FDFA;
+            }
+
+            #tgScores th {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                font-weight: normal;
+                padding: 10px 5px;
+                border-style: solid;
+                border-width: 0px;
+                overflow: hidden;
+                word-break: normal;
+                border-color: #999;
+                color: #fff;
+                background-color: #26ADE4;
+            }
+
+        th {
+            font-family: "Comic Sans MS", cursive, sans-serif !important;
+            background-color: #00b4ff;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        #scoreul {
+            list-style-position: outside;
+            display: table;
+            width: 100%;
+            color: white;
+            padding: 0;
+            margin: 0;
+            float: left;
+            background-color: #1EB8EB;
+            border-radius: 5px;
+            font: normal 16px/normal Arial Black, Gadget, sans-serif;
+        }
+
+        #scoreol li {
+            padding: 0;
+            margin: 0;
+            float: left;
+        }
+
+        .btnGame {
+            width: 100px;
+            height: 30px;
+            display: inline-block;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 1px solid #018dc4;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            font: normal 24px/normal Impact, Charcoal, sans-serif;
+            color: rgba(255,255,255,1);
+            -o-text-overflow: clip;
+            text-overflow: clip;
+            background: #0199d9;
+            -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+            text-shadow: -1px -1px 0 rgba(15,73,168,0.66);
+            -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+        }
+
+        .level {
+            position: absolute;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            overflow: hidden;
+            border: none;
+            -webkit-border-radius: 35px;
+            border-radius: 35px;
+            font: normal 16px/1 "Times New Roman", Times, serif;
+            color: rgba(255,255,255,1);
+            text-align: center;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            background: #0199d9;
+            -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3);
+            box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+
+        .MapDeleteLevelListBtn {
+            display: inline-block;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            border: 1px solid #d32e39;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            font: normal 16px/normal "Times New Roman", Times, serif;
+            color: rgba(255,255,255,0.9);
+            -o-text-overflow: clip;
+            text-overflow: clip;
+            background: #f24f4f;
+            -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+            text-shadow: -1px -1px 0 rgba(15,73,168,0.66);
+            -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            background-image: url(http://simpleicon.com/wp-content/uploads/cross.png);
+            background-repeat: no-repeat;
+            background-size: 15px 15px;
+            position: absolute;
+        }
+
+        .MapNameLevelList {
+            font-family: Bangers;
+            font-size: x-large;
+            color: white;
+        }
+
+        #btnMenu {
+            display: inline-block;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            cursor: pointer;
+            border: 1px solid #018dc4;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            font: normal 16px/normal "Times New Roman", Times, serif;
+            color: rgba(255,255,255,0.9);
+            -o-text-overflow: clip;
+            text-overflow: clip;
+            background: #0199d9;
+            -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+            text-shadow: -1px -1px 0 rgba(15,73,168,0.66);
+            -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+            transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+        }
+
+        .inAdi {
+            display: inline-block;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            padding: 10px 20px;
+            border: 1px solid #b7b7b7;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            font: normal 16px/normal Impact, Charcoal, sans-serif;
+            color: rgba(255,255,255,1);
+            -o-text-overflow: clip;
+            text-overflow: clip;
+            background: rgba(63,157,219,1);
+            -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+            box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.66);
+            -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+            -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+            -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+            transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+        }
+
+        #GameInfoDiv {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            position:absolute;
+            width: 300px;
+            height: 500px;
+            left: 150px;
+            top: 50px;
+            overflow: hidden;
+            border: none;
+            -webkit-border-radius: 40px;
+            border-radius: 40px;
+            font: normal 16px/1 "Times New Roman", Times, serif;
+            color: rgba(255,255,255,1);
+            text-align: center;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            background: rgba(1,153,217,1);
+            -webkit-box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
+            box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+        #GameSettingsDiv {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            position:absolute;
+            width: 300px;
+            height: 500px;
+            left: 150px;
+            top: 50px;
+            overflow: hidden;
+            border: none;
+            -webkit-border-radius: 40px;
+            border-radius: 40px;
+            font: normal 16px/1 "Times New Roman", Times, serif;
+            color: rgba(255,255,255,1);
+            text-align: center;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            background: rgba(1,153,217,1);
+            -webkit-box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
+            box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+        
+        .CreatePositionHelper {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border: 0.5px ridge;
+            border-color: gray;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        label {
+            font: normal 16px/1 Impact, Charcoal, sans-serif;
+        }
+
+        h1 {
+            font: normal 16px/1 Impact, Charcoal, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="maindiv" class="unselectable" style="position:absolute; left: 0px; top: 0px; width: 1000px; height: 1000px;">
+        <h4 id="positionstxt" class="unselectable" style="display:none; position:absolute; left:20px; top:800px;"></h4>
+        <div id="dialogForDeleteMap" title="HARİTA SİLME">
+            <p>Seçilen haritayı silmek istediğinize emin misiniz?</p>
+        </div>
+        <div id="dialogForEmptyMapNameTxtBox" title="UYARI!!!">
+            <p>Lütfen haritanız için isim girin!</p>
+        </div>
+        <div id="dialogForSameMapName" title="UYARI!!!">
+            <p>Başka bir harita ile aynı ismi girdiniz.Lütfen başka bir isim verin!</p>
+        </div>
+        <div id="dialogForNoBrick" title="UYARI!!!">
+            <p>Hiç element kullanmadınız.Lütfen kullanınız!</p>
+        </div>
+        <div id="dialogForCreateTutorial" title="Eğitim">
+            <p>Bir element seçin.</p>
+        </div>
+        <div id="dialogForCreateTutorialEnd" title="Eğitim">
+            <p>Oyun ekranına tıklayarak objeyi oluşturabilirsiniz.<br>Çoklu oluşturmak için mousa basılı tutarak ekranda gezdirin.Silmek için sağ tıklayın.<br>Oluşturduğunuz objeyi tekrar konumlandırmak için objeye basılı tutup gezdirin.</p>
+        </div>
+        <table id="tgScores" style="display:none; position: absolute; left: 800px; top: 50px; user-select: none;">
+            <tr>
+                <th colspan="3">Scores</th>
+            </tr>
+            <tr>
+                <td>NO</td>
+                <td>Adı</td>
+                <td>Skor</td>
+            </tr>
+        </table>
+
+        <div id="gamediv" class="unselectable" style="background-image: url(https://s31.postimg.org/evfpc80ob/back.png); width: 600px; height: 600px; background-size: 600px 600px;">
+            <button id="btnMenu" style="background-image: url(https://cdn4.iconfinder.com/data/icons/tupix-1/30/list-512.png); background-repeat:no-repeat; background-size: 50px 55px; width:40px; height:50px; left:725px; top:0px; position:absolute; "></button>
+            <div id="GameInfoDiv" style="display:none;">
+                <p style="font:normal 40px/normal Impact, Charcoal, sans-serif;">YAPIMCILAR</p>
+                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>Programcı(Gerçek kahraman ;D  )</u></p>
+                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Fatih Aslancan</p>
+                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>Oyun Fikri</u></p>
+                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Metin Apaydın</p>
+                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>Oyun Test(Playtesting)</u></p>
+                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Mustafa Apaydın</p>
+                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Osman Aslancan</p>
+                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Ramazan Pilavcı</p>
+                <p style="font:normal 8px/normal Impact, Charcoal, sans-serif;">Copyright © 2015 - 2016 GENOX Software Engineering -- All Rights Reserved.<br />© 2015 - 2016 GENOX Software Engineering -- Tüm Hakları Saklıdır.</p>
+
+            </div>
+            <div id="GameSettingsDiv" style="display:none;">
+                <p style="font:normal 40px/normal Impact, Charcoal, sans-serif;">AYARLAR</p>
+                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>SES</u></p>
+                <input type="checkbox" name="music" id="checkboxMusic" checked>Müzik<br>
+                <br />
+                <br />
+                <br />
+                <br />
+                <p style="font:normal 40px/normal Impact, Charcoal, sans-serif;">Game Version : 0.2.0 Alpha</p>
+            </div>
+        </div>
+
+        <button id="btnLevelKaydet" class="btnGame" style="display:none; position:absolute; left:300px; top:600px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Kaydet</button>
+        <div id="CreateBlue" class="brickBlue" style="display:none; left: 650px; top: 100px;"></div>
+        <div id="CreateOrange" class="brickOrange" style="display:none; left: 650px; top: 140px;"></div>
+        <h4 id="ElementlerTxt" style="display:none; left:625px; top: 40px; position:absolute;">Elementler :</h4>
+        <input type="text" id="mapNameTxtBox" class="inAdi" style="display:none; position: absolute;" placeholder="Haritanın adını yazın" />
+        <!-- <img id="firtarrow" class="unselectable" src="http://i65.tinypic.com/sli9gz.png" style="width: 150px; height:100px; left:800px; top:50px; position:absolute; " />-->
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            var LevelSelected = false;
+            var numLevels;
+            var gamediv = $("#gamediv");
+            var maindiv = $("#maindiv");
+            var gamewidth = 600;
+            var gameheight = 600;
+
+            //Mouse Positions
+            var mouseX;
+            var mouseY;
+
+            var life = 3;
+            var clickedmouse = 0;
+            var dy;
+            var path;
+            var dx;
+            var ballremoved = false;
+            var idLevel = 0;
+            var boss;
+
+            //Seçilmiş olan mapın id si
+            var clickedOn;
+
+            //Music
+            var audioElement = document.createElement('audio');
+            audioElement.setAttribute('src', 'http://vocaroo.com/media_command.php?media=s0TpKNAf0D7E&command=download_mp3');// http://picosong.com/tDGQ/
+            audioElement.setAttribute('autoplay', 'autoplay');
+            audioElement.loop = true;
+            audioElement.load();
+
+            $.get();
+
+            audioElement.addEventListener("load", function () {
+                audioElement.play();
+            }, true);
+
+            var audioElementButton = document.createElement('audio');
+            audioElementButton.setAttribute('src', 'http://www.soundjay.com/button/button-19.mp3');
+            audioElementButton.load();
+
+            var audioElementDeath = document.createElement('audio');
+            audioElementDeath.setAttribute('src', 'http://www.soundjay.com/button/button-12.mp3');
+            audioElementDeath.load();
+
+            var audioElementBallCollision = document.createElement('audio');
+            audioElementBallCollision.setAttribute('src', 'http://www.soundjay.com/button/button-24.mp3');
+            audioElementBallCollision.load();
+
+            var audioElementBallCreatePlace = document.createElement('audio');
+            audioElementBallCreatePlace.setAttribute('src', 'http://www.soundjay.com/button/button-23.mp3');
+            audioElementBallCreatePlace.load();
+
+            var audioElementPossitiveBonus = document.createElement('audio');
+            audioElementPossitiveBonus.setAttribute('src', 'http://www.soundjay.com/button/button-14.mp3');
+            audioElementPossitiveBonus.load();
+
+            var audioElementNegativeBonus = document.createElement('audio');
+            audioElementNegativeBonus.setAttribute('src', 'http://www.soundjay.com/button/button-4.mp3');
+            audioElementNegativeBonus.load();
+
+            var audioElementBounce = document.createElement('audio');
+            audioElementBounce.setAttribute('src', 'http://www.soundjay.com/button/button-50.mp3');
+            audioElementBounce.load();
+
+
+
+            $(document).on('click', '#gamediv > .level', function (e) {
+                audioElementButton.play();
+            })
+            $(document).on('click', '#maindiv > .btnGame', function (e) {
+                audioElementButton.play();
+            })
+            $(document).on('click', '#gamediv > .btnGame', function (e) {
+                audioElementButton.play();
+            })
+            $('#checkboxMusic').change(function(){
+                if (this.checked == false) {
+                    audioElement.pause();
+                }
+                if (this.checked == true) {
+                    if (audioElement.duration > 0) {
+                        audioElement.currentTime = 0;
+                        audioElement.play();
+                    } else {
+
+                        audioElement.play();
+
+                    }
+                }
+               
+            })
+
+            //Level Seçenekleri Dizme
+            function LevelMenu() {
+                var jqxhr = $.get("http://127.0.0.1:8080/getmap", function (get) {
+                    idLevel = 0;
+                    for (z = 20; z <= gameheight ; z += 150) {
+                        for (i = 5; i <= gamewidth - 50 ; i += 150) {
+                            numLevels = $('.level').length;
+                            if (numLevels == get.length) break;
+                            idLevel += 1
+                            gamediv.append('<div id="' + idLevel + '" class="level" style="left:' + i + 'px; top:' + z + 'px;"></div>');
+                            gamediv.append('<h4  id="mapName' + idLevel + '" class="MapNameLevelList" style="left:' + (i + 25) + 'px; top:' + (z + 10) + 'px; position:absolute;"></h4>');
+                            gamediv.append('<div  id="btnMapDelete' + idLevel + '" class="MapDeleteLevelListBtn" style="left:' + (i + 110) + 'px; top:' + (z + 110) + 'px; position:absolute;"></div>');
+                        }
+                        if (numLevels == get.length) break;
+                    }
+                    $.each(get, function (index, app) {
+
+                        $('#mapName' + (index + 1)).text(app.name);
+                    });
+                });
+                //Level Seçme effect
+                jqxhr.always(function () {
+                    $("#gamediv .level").hover(function () {
+                        $(this).animate({ 'background-color': '#8bd6f4' }, 300);
+                    }, function () {
+                        $(this).animate({ 'background-color': '#0199d9' }, 300);
+                    });
+                    $("#gamediv .MapDeleteLevelListBtn").hover(function () {
+                        $(this).animate({ 'background-color': '#ff0000', '-webkit-box-shadow': '1px 1px 50px 0 rgba(255,0,0,1)', 'box-shadow': '1px 1px 50px 0 rgba(255,0,0,1)' }, 300);
+                    }, function () {
+                        $(this).animate({ 'background-color': '#f24f4f;', '-webkit-box-shadow': '2px 2px 2px 0 rgba(0,0,0,0.2)', 'box-shadow': '2px 2px 2px 0 rgba(0,0,0,0.2)' }, 300);
+                    });
+                });
+
+            }
+            LevelMenu();
+
+            //Level Kaydettikten sonra
+            function LevelMenuAfterPost(data) {
+                HideGame();
+                CreateMode = false;
+                CreateBlue = false;
+                CreateOrange = false;
+                createUI = false;
+                mapMenu = true;
+                $("div").remove("div.brick.ui-draggable.ui-draggable-handle");
+                $("div").remove("div.brick2.ui-draggable.ui-draggable-handle");
+                $("div").remove(".level");
+                $("h4").remove(".MapNameLevelList");
+                $("div").remove(".MapDeleteLevelListBtn");
+                LevelMenu();
+            }
+            //Brick Dizme
+
+            $(document).on('click', '#gamediv > .level', function (e) {
+                clickedOn = $(e.target).attr('id');
+                HideGame();
+                ShowGame();
+                game = true;
+                $.get("http://127.0.0.1:8080/getmap", function (get) {
+
+                    $.each(get[clickedOn - 1].brickPositions, function (index, app) {
+                        gamediv.append('<div class="' + app.classInfo + '" style="left:' + app.posInfo.left + 'px; top:' + app.posInfo.top + 'px;"></div>');
+                    });
+                    $('#MapName').text(get[clickedOn - 1].name);
+                    //Brick info alma
+                    var brick = $('.brick');
+                    var brickOuterHeight = 20;
+                    var brickOuterWidth = 40;
+
+                })
+
+
+                //START THE GAMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                StartGame();
+            });
+
+            //Harita Silme onay aşaması
+            var postid;
+            $(document).on('click', '#gamediv > .MapDeleteLevelListBtn', function (e) {
+                audioElementButton.play();
+                var clickedOn = $(e.target).attr('id');
+                clickedOn = clickedOn.match(/\d+/);
+                postid = parseInt(clickedOn[0]) - 1;
+                $("#dialogForDeleteMap").dialog("open");
+
+            });
+            //Harita silme onaylandıktan sonra
+            $("#dialogForDeleteMap").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Sil": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                        PostDeleteMapData();
+                        
+                    },
+                    "İptal et": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            function StartGame() {
+                gamediv.append('<h4 id="score" class="unselectable" style="display:none; font-family:Bangers; font-size:xx-large; color:white; z-index: 1; position:absolute; left:20px; top:20px;"></h4>',
+                               '<img id="firstHearth" class="unselectable" src="http://zeldawiki.org/images/thumb/2/2e/Recover_heart.png/100px-Recover_heart.png" style="display:none; width: 25px; height:25px; left:675px; top:0px; position:absolute; ">',
+                               '<img id="secondHearth" class="unselectable" src="http://zeldawiki.org/images/thumb/2/2e/Recover_heart.png/100px-Recover_heart.png" style="display:none; width:25px; height:25px; left:650px; top:0px; position:absolute; ">',
+                               '<img id="thirdHearth" class="unselectable" src="http://zeldawiki.org/images/thumb/2/2e/Recover_heart.png/100px-Recover_heart.png" style="display:none; width: 25px; height:25px; left:625px; top:0px; position:absolute; ">',
+                               '<h4 id="haritaIsmiTxt" style="left:625px; top: 40px; position:absolute; display:none;">Harita İsmi</h4>',
+                               '<h4 id="MapName" style="left:625px; top:60px; position:absolute; display:none;"></h4>',
+                               '<table id="tgScores" style="display:none; position: absolute; left: 800px; top: 50px; user-select: none;"><tr><th colspan="3">Scores</th></tr><tr><td>NO</td><td>Adı</td><td>Skor</td></tr></table>')
+                ShowGame();
+                $("#score").text('0');
+
+                //Get Scores
+                $("#MapName").ready(function () {
+                    $.get("http://127.0.0.1:8080/get", function (get) {
+                        //  alert(get);
+                        function sortfunction(a, b) {
+                            return (b.score - a.score)
+                        }
+                        get.sort(sortfunction);
+                        $("#tgScores").empty();
+                        $("#tgScores").append('<tr><th colspan="3">Scores</th></tr><tr><td>NO</td><td>Adı</td><td>Skor</td></tr>');
+                        var siralmaNum = 0;
+                        $.each(get, function (index, app) {
+                            if (app.Map == $("#MapName").text()) {
+                                siralmaNum += 1;
+                                $("#tgScores").append('<tr><td>' + siralmaNum + '</td><td>' + app.name + '</td><td>' + app.score + '</td></tr>');
+                            }
+
+                        });
+
+
+                    })
+                })
+                var life = 3;
+                clickedmouse = 0;
+                ballremoved = false;
+
+
+
+                //Player Oluşturma
+                gamediv.append('<div id="player" style="left:' + (gamewidth - 90) / 2 + 'px;"></div>');
+                gamediv.append('<div id="ball" style="left:' + ((gamewidth) / 2) + 'px;"></div>');
+
+                //Genişleme konum
+                var GY;
+                var GX;
+
+                //AntiGenişleme konum
+                var AY;
+                var AX;
+
+                var ball = $("#ball");
+                var player = $("#player");
+                var playerSize = {
+                    height: player.height(),
+                    width: player.width()
+                };
+                var ballSize = {
+                    height: ball.height(),
+                    width: ball.width()
+                };
+                var brickSize = {
+                    height: 40,
+                    width: 20
+                };
+                var genislemeSize = {
+                    width: 24,
+                    height: 24
+                };
+                //Başlangıç rotası
+                var max;
+                var min;
+
+
+
+
+                var apps;
+                var blue;
+                var orange;
+
+                //Create Helper
+                var helper;
+
+
+                //Sorgulamalar
+                var nortimer;
+                var genislemevar = false;
+                var antidaralmavar = false;
+                var point = 0;
+
+
+
+                boss = window.setInterval(function () {
+                    if (clickedmouse == 1 && menuacik == false && ballremoved == false) {
+                        //Pozisyon kontrolü
+                        var ball = $("#ball");
+                        var genisleme = $("#genisletme");
+                        var antidaralma = $("#antidaralma");
+                        var player = $("#player");
+                        var ballposition = ball.offset();
+                        var playerposition = player.offset();
+                        var genislemeposition = genisleme.offset();
+                        var antidaralmaposition = antidaralma.offset();
+
+
+                        if (ballremoved == false) {
+                            $("#positionstxt").text("left: " + ballposition.left + ", top: " + ballposition.top + " dx : " + dx + " dy : " + dy + " playerposX: " + playerposition.left + " playerposY: " + playerposition.top);
+
+                            //Top Hareketi
+                            var x = ballposition.left;
+                            var y = ballposition.top;
+                            if (x < 0 || x > gamewidth - ballSize.width)
+                            { audioElementBounce.play(); dx = -dx; }
+                            if (y < 0 || y > gameheight + 40)
+                            { audioElementBounce.play(); dy = -dy; }
+                            var executed = false;
+
+                            // Oyuncu Çarpışma
+                            if (collision(ball, player)) {
+                                if (audioElementBallCollision.duration > 0 && !audioElementBallCollision.paused) {
+                                    audioElementBallCollision.pause();
+                                    audioElementBallCollision.currentTime = 0;
+                                    audioElementBallCollision.play();
+                                } else {
+
+                                    audioElementBallCollision.play();
+
+                                }
+
+                                if (player.width() == 90) {
+                                    var carpmapos = ballposition.left - playerposition.left;
+                                    var yol;
+                                    if (carpmapos >= 0 && carpmapos < 9 || carpmapos < 0)
+                                    { yol = -5; }
+                                    if (carpmapos >= 9 && carpmapos < 18)
+                                    { yol = -4; }
+                                    if (carpmapos >= 18 && carpmapos < 27)
+                                    { yol = -3; }
+                                    if (carpmapos >= 27 && carpmapos < 36)
+                                    { yol = -2; }
+                                    if (carpmapos >= 36 && carpmapos < 45)
+                                    { yol = -1; }
+                                    if (carpmapos >= 45 && carpmapos < 54)
+                                    { yol = 1; }
+                                    if (carpmapos >= 54 && carpmapos < 63)
+                                    { yol = 2; }
+                                    if (carpmapos >= 63 && carpmapos < 72)
+                                    { yol = 3; }
+                                    if (carpmapos >= 72 && carpmapos < 81)
+                                    { yol = 4; }
+                                    if (carpmapos >= 81 && carpmapos < 90)
+                                    { yol = 5; }
+                                    dy = -5;
+                                    dx = yol;
+                                }
+                                else {
+                                    var carpmapos = ballposition.left - playerposition.left;
+                                    var yol;
+                                    if (carpmapos >= 0 && carpmapos < 15 || carpmapos < 0)
+                                    { yol = -5; }
+                                    if (carpmapos >= 15 && carpmapos < 30)
+                                    { yol = -4; }
+                                    if (carpmapos >= 30 && carpmapos < 45)
+                                    { yol = -3; }
+                                    if (carpmapos >= 45 && carpmapos < 60)
+                                    { yol = -2; }
+                                    if (carpmapos >= 60 && carpmapos < 75)
+                                    { yol = -1; }
+                                    if (carpmapos >= 75 && carpmapos < 90)
+                                    { yol = 1; }
+                                    if (carpmapos >= 90 && carpmapos < 105)
+                                    { yol = 2; }
+                                    if (carpmapos >= 105 && carpmapos < 120)
+                                    { yol = 3; }
+                                    if (carpmapos >= 120 && carpmapos < 135)
+                                    { yol = 4; }
+                                    if (carpmapos >= 135 && carpmapos < 150)
+                                    { yol = 5; }
+                                    dy = -5;
+                                    dx = yol;
+                                }
+
+
+
+                            }
+                            //Can --------------------------------------------------------------
+                            if (ballposition.top > gameheight + 30 || positions.length == 0 && menuacik == false) {
+                                ball.remove();
+                                life -= 1;
+                                ballremoved = true;
+                                clearTimeout(nortimer);
+                                tonormalsize();
+
+                                if (life == 2 || positions.length == 0) {
+                                    $("#firstHearth").remove();
+                                    audioElementDeath.play();
+                                }
+                                if (life == 1 || positions.length == 0) {
+                                    $("#secondHearth").remove();
+                                    audioElementDeath.play();
+                                }
+                                if (life == 0 || positions.length == 0 && menuacik == false) {
+                                    removebutnotScoreTable();
+                                    game = false;
+                                    scoreSubmit = true;
+                                    $("#score").remove();
+                                    $("#thirdHearth").remove();
+                                    gamediv.append('<div id="playerInfo" style="position:absolute; left:50px; top:50px;"><h1 style="font-size:x-large; color: white;" >SCORE!!!</h1><div><label style="font-size:x-large; color: white;" for="name">İsim:</label><input type="text" onclick="this.select()" class="inAdi" id="name" name="name" placeholder="İsminizi yazın" /><label style="font-size:x-large; color: white;" for="scoreresult">Score : ' + point + '</label><input type="hidden" id="scoreresult" name="scoreresult" value="1"/><button class="btnGame" id="kayit">Kaydet</button></div>');
+                                    $("#scoreresult").val(point);
+                                    gamediv.append('<button class="btnGame" id="restart" style=" background-image: url(https://lh5.ggpht.com/xLrN7HaSUMCKR-fkAynL3xJksnI8p3HRLugvLK240-yBKp9hywaTYD5yiSDiLhwOOMrf=w170); background-repeat: no-repeat; background-size: 50px 50px; position:absolute; left:50px; top:300px; width: 50px;" ></button>');
+                                }
+
+                            }
+                            $('#kayit').click(PostData);
+
+
+                            /*       $.get("http://127.0.0.1:8080/get", function (get) {
+                                       //  alert(get);
+                                       function sortfunction(a, b) {
+                                           return (b.score - a.score)
+                                       }
+                                       get.sort(sortfunction);
+                                       $.each(get, function (index, app) {
+                                           app.score
+                                           $("#scoreol").append('<li>' + 'Adı : ' + app.name + ' Skor : ' + app.score + '</li>');
+
+                                       });
+
+
+                                   });
+                                      */
+
+
+
+                            //Tuğla Çarpışma
+                            $.each(positions, function (index, app) {
+                                //Genisleme ve daralma düşme
+                                if (ballremoved == false) {
+                                    if (collisionY(ball, app)) {
+                                        if (audioElementBallCollision.duration > 0 && !audioElementBallCollision.paused) {
+                                            audioElementBallCollision.pause();
+                                            audioElementBallCollision.currentTime = 0;
+                                            audioElementBallCollision.play();
+                                        } else {
+
+                                            audioElementBallCollision.play();
+
+                                        }
+                                        var genislemerandom = Math.floor(Math.random() * 5) + 1;
+                                        var antidaralmarandom = Math.floor(Math.random() * 5) + 1;
+                                        if (genislemerandom != antidaralmarandom) {
+                                            if (genislemerandom == 3) {
+                                                if (!genislemevar) {
+
+                                                    genislemevar = true;
+                                                    gamediv.append('<div id="genisletme" style="left:' + (app.left) + 'px; top:' + (app.top + brickSize.height) + 'px; "></div>');
+
+                                                }
+                                            }
+                                            if (antidaralmarandom == 3) {
+                                                if (!antidaralmavar) {
+
+                                                    antidaralmavar = true;
+                                                    gamediv.append('<div id="antidaralma" style="left:' + (app.left + (brickSize.width / 2)) + 'px; top:' + (app.top + brickSize.height) + 'px; "></div>');
+
+                                                }
+                                            }
+                                        }
+                                        lookbrickpositions();
+                                        //Sil
+                                        var willremove = lookbrickpositionsforDelete(app);
+
+
+                                        if (willremove.attr('class') == "brick") {
+                                            point += 10;
+                                        }
+                                        else {
+                                            point += 50;
+                                        }
+                                        $("#score").text(point);
+                                        willremove.remove();
+                                        lookbrickpositions();
+                                        dy = -dy;
+                                    }
+                                    if (collisionX(ball, app)) {
+                                        if (audioElementBallCollision.duration > 0 && !audioElementBallCollision.paused) {
+                                            audioElementBallCollision.pause();
+                                            audioElementBallCollision.currentTime = 0;
+                                            audioElementBallCollision.play();
+                                        } else {
+
+                                            audioElementBallCollision.play();
+
+                                        }
+                                        var genislemerandom = Math.floor(Math.random() * 10) + 1;
+                                        var antidaralmarandom = Math.floor(Math.random() * 10) + 1;
+                                        if (genislemerandom != antidaralmarandom) {
+                                            if (genislemerandom == 3) {
+                                                if (!genislemevar) {
+                                                    genislemevar = true;
+                                                    gamediv.append('<div id="genisletme" style="left:' + (app.left) + 'px; top:' + (app.top + brickSize.height) + 'px; width:24px; height:24px; background-color:chocolate; position:absolute;"></div>');
+                                                }
+                                            }
+                                            if (antidaralmarandom == 3) {
+                                                if (!antidaralmavar) {
+
+                                                    antidaralmavar = true;
+                                                    gamediv.append('<div id="antidaralma" style="left:' + (app.left + (brickSize.width / 2)) + 'px; top:' + (app.top + brickSize.height) + 'px; "></div>');
+
+                                                }
+                                            }
+                                        }
+                                        lookbrickpositions();
+                                        //Sil
+                                        var willremove = lookbrickpositionsforDelete(app);
+
+
+                                        if (willremove.attr('class') == "brick") {
+                                            point += 10;
+                                        }
+                                        else {
+                                            point += 50;
+                                        }
+                                        $("#score").text(point);
+                                        willremove.remove();
+                                        lookbrickpositions();
+                                        dx = -dx;
+                                    }
+                                }
+
+
+                                /*  else if (ballposition.left + ballSize.width > (brickPositionInfo.left - 3)
+                                           && ballposition.left < (brickPositionInfo.left + brickSize.width)
+                                           && ballposition.left > (brickPositionInfo.left)
+                                           && ballposition.top < (brickPositionInfo.top + brickSize.height))
+                                  {
+                                      var genislemerandom = Math.floor(Math.random() * 5) + 1;
+                                      if (genislemerandom == 3) {
+                                          if (!genislemevar) {
+                                              genislemevar = true;
+                                              gamediv.append('<div id="genisletme" style="left:' + (brickPositionInfo.left + (brickSize.width / 2)) + 'px; top:' + (brickPositionInfo.top + brickSize.height) + 'px; width:24px; height:24px; background-color:chocolate; position:absolute;"></div>');
+                                          }
+                                      }
+                                      $(app).remove();
+
+
+                                      point += 10;
+                                      $("#score").text("Score : " + point);
+                                      dx = -dx;
+                                  }*/
+
+
+
+                            });
+
+                            x += dx;
+                            y += dy;
+                            $("#ball").css({ left: x });
+                            $("#ball").css({ top: y });
+
+                            //Oyuncu Genişlet
+                            if (genislemevar) {
+                                GY = genislemeposition.top;
+                                GX = genislemeposition.left;
+                                GY += 2;
+                                if (collision(genisleme, player)) {
+                                    genisleme.remove();
+                                    audioElementPossitiveBonus.play();
+                                    $("#player").css("width", 150);
+                                    player = $("#player");
+                                    playerSize = {
+                                        height: player.height(),
+                                        width: player.width()
+                                    };
+                                    if (nortimer != null) {
+                                        clearTimeout(nortimer);
+                                        nortimer = setTimeout(tonormalsize, 10000);
+                                    }
+                                    else {
+                                        nortimer = setTimeout(tonormalsize, 10000);
+                                    }
+                                    genislemevar = false;
+
+                                }
+                                if (GY > gameheight) {
+                                    genisleme.remove();
+                                    genislemevar = false;
+                                }
+                                $("#genisletme").css({ top: GY });
+                            }
+                            //Oyuncu Daralt
+                            if (antidaralmavar) {
+                                AY = antidaralmaposition.top;
+                                AX = antidaralmaposition.left;
+                                AY += 2;
+                                if (collision(antidaralma, player)) {
+                                    antidaralma.remove();
+                                    audioElementNegativeBonus.play();
+                                    $("#player").css("width", 40);
+                                    player = $("#player");
+                                    playerSize = {
+                                        height: player.height(),
+                                        width: player.width()
+                                    };
+                                    if (nortimer != null) {
+                                        clearTimeout(nortimer);
+                                        nortimer = setTimeout(tonormalsize, 10000);
+                                    }
+                                    else {
+                                        nortimer = setTimeout(tonormalsize, 10000);
+                                    }
+                                    antidaralmavar = false;
+
+                                }
+                                if (AY > gameheight) {
+                                    antidaralma.remove();
+                                    antidaralmavar = false;
+                                }
+                                $("#antidaralma").css({ top: AY });
+                            }
+                        }
+
+                    }
+                }, 7);
+
+                // Normal uzunluğa dön
+                function tonormalsize() {
+                    $("#player").css("width", 90);
+                    player = $("#player");
+                    playerSize = {
+                        height: player.height(),
+                        width: player.width()
+                    };
+
+                }
+
+
+                //Mouse ile hareket
+                gamediv.mousemove(function (event) {
+                    if (event.pageX < gamewidth - playerSize.width) {
+                        player.css('left', event.pageX);
+                        if (clickedmouse == 0 && ballremoved == false) {
+                            ball.css('left', event.pageX + (playerSize.width / 2) - (ballSize.width / 2));
+                        }
+                    }
+                });
+
+                //Tıklama ile başlama
+                gamediv.click(function () {
+                    if (life != 0 && CreateMode == false && $(event.target).attr('id') != "btnMenu" && game == true) {
+                        if (clickedmouse == 0) {
+                            clickedmouse = 1;
+                            lookbrickpositions();
+                            dy = -5;
+                            max = 5;
+                            min = -5;
+                            path = Math.floor(Math.random() * (max - min + 1)) + min;
+                            dx = path;
+                        }
+                        if (ballremoved && positions.length != 0) {
+                            player = $("#player");
+                            gamediv.append('<div id="ball" style="left:' + (player.offset().left + (playerSize.width / 2) - ballSize.width) + 'px;"></div>');
+                            ball = $("#ball");
+                            ballremoved = false;
+                            clickedmouse = 0;
+                        }
+
+                    }
+
+
+
+                });
+                //Enter ile yolla
+                $(document).keyup(function (e) {
+                    if ($(".inAdi:focus") && (e.keyCode === 13)) {
+                        PostData();
+                    }
+                });
+
+            }//Game End of function
+            //Collision Defination
+            function collision($div1, $div2) {
+                var x1 = $div1.offset().left;
+                var y1 = $div1.offset().top;
+                var h1 = $div1.outerHeight(true);
+                var w1 = $div1.outerWidth(true);
+                var b1 = y1 + h1;
+                var r1 = x1 + w1;
+                var x2 = $div2.offset().left;
+                var y2 = $div2.offset().top;
+                var h2 = $div2.outerHeight(true);
+                var w2 = $div2.outerWidth(true);
+                var b2 = y2 + h2;
+                var r2 = x2 + w2;
+
+                if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+                return true;
+            }
+            //Collision Defination for Bölüm oluşturma
+            function collisioninCreate($div1, div2) {
+                var x1 = $div1.offset().left;
+                var y1 = $div1.offset().top;
+                var h1 = $div1.outerHeight(true);
+                var w1 = $div1.outerWidth(true);
+                var b1 = y1 + h1;
+                var r1 = x1 + w1;
+                var x2 = div2.left;
+                var y2 = div2.top;
+                var h2 = 20;
+                var w2 = 40;
+                var b2 = y2 + h2;
+                var r2 = x2 + w2;
+
+                if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+                return true;
+            }
+            //Collision Defination for From soldan sağdan
+            function collisionX($div1, div2) {
+                var x1 = $div1.offset().left;
+                var y1 = $div1.offset().top;
+                var h1 = $div1.outerHeight(true);
+                var w1 = $div1.outerWidth(true);
+                var b1 = y1 + h1;
+                var r1 = x1 + w1;
+                var x2 = div2.left;
+                var y2 = div2.top;
+                var h2 = 20;
+                var w2 = 40;
+                var b2 = y2 + h2;
+                var r2 = x2 + w2;
+
+                if (b1 > b2 || y2 > y1 || r1 < x2 || x1 > r2) return false;
+                return true;
+            }
+            //Collision Defination for from yukarıdan aşağıdan
+            function collisionY($div1, div2) {
+
+                var x1 = $div1.offset().left;
+                var y1 = $div1.offset().top;
+                var h1 = $div1.outerHeight(true);
+                var w1 = $div1.outerWidth(true);
+                var b1 = y1 + h1;
+                var r1 = x1 + w1;
+                var x2 = div2.left;
+                var y2 = div2.top;
+                var h2 = 20;
+                var w2 = 40;
+                var b2 = y2 + h2;
+                var r2 = x2 + w2;
+
+                if (b1 < y2 || y1 > b2 || r1 > r2 || x1 < x2) return false;
+                return true;
+            }
+            //tüm brickler pozisyon kontrolü
+            function lookbrickpositions() {
+                blue = $(".brick"),
+                 positions = [];
+                orange = $(".brick2");
+
+                apps = $.merge(blue, orange);
+
+                $.each(apps, function (index, app) {
+                    var brickPositionInfo = $(app).offset();
+
+                    positions.push(brickPositionInfo);
+                    // console.log(index + ":" + brickPositionInfo.top + ":" + brickPositionInfo.left);
+                });
+            }
+            //Bul ve yok et
+            function lookbrickpositionsforDelete(victim) {
+                blue = $(".brick");
+                orange = $(".brick2");
+
+                apps = $.merge(blue, orange);
+                var ahadabu;
+                $.each(apps, function (index, app) {
+                    var brickPositionInfo = $(app).offset();
+
+                    if (victim.left == brickPositionInfo.left && victim.top == brickPositionInfo.top) {
+                        ahadabu = $(app);
+                    }
+                });
+                return ahadabu;
+            }
+            //tüm brickler pozisyon kontrolü CLASS KONTROLÜ İLE BİRLİKTE
+            function lookbrickpositionsWithCLass() {
+                blue = $(".brick"),
+                 positions = [];
+                orange = $(".brick2");
+
+                apps = $.merge(blue, orange);
+
+                $.each(apps, function (index, app) {
+                    var brickPositionInfo = $(app).offset();
+                    var classNameNeedReplace = $(app).attr('class');
+                    classNameNeedReplace = classNameNeedReplace.replace(' ui-draggable ui-draggable-handle', '');
+                    positions.push({ posInfo: brickPositionInfo, classInfo: classNameNeedReplace });
+                    // console.log(index + ":" + brickPositionInfo.top + ":" + brickPositionInfo.left);
+                });
+            }
+            //Level tasarlama obje eleme sorugulama için
+            function lookbrickpositionsNotClicked() {
+                blue = $(".brick"),
+                 positions = [];
+                orange = $(".brick2");
+
+                apps = $.merge(blue, orange);
+
+                $.each(apps, function (index, app) {
+                    if ($('#Placed').attr('id') != $(app).attr('id')) {
+                        var brickPositionInfo = $(app).offset();
+
+                        positions.push(brickPositionInfo);
+                    }
+                    // console.log(index + ":" + brickPositionInfo.top + ":" + brickPositionInfo.left);
+                });
+            }
+            function lookbrickpositionsforCreatePosition() {
+                helper = $(".CreatePositionHelper"),
+                 helperPositions = [];
+
+                $.each(helper, function (index, app) {
+                    var helperPositionInfo = $(app).offset();
+
+                    helperPositions.push(helperPositionInfo);
+
+                });
+            }
+
+            //end game uçur elementleri
+            function removediv() {
+                $("div").remove(".brick");
+                $("div").remove(".brick2");
+                $("#player").remove();
+                $("#ball").remove();
+                $("#genisletme").remove();
+                $("#antidaralma").remove();
+                $("#firstHearth").remove();
+                $("#secondHearth").remove();
+                $("#thirdHearth").remove();
+                $("#MapName").remove();
+                $("#haritaIsmiTxt").remove();
+                $("#tgScores").remove();
+                $("div").remove(".level");
+                $("h4").remove(".MapNameLevelList");
+                $("div").remove(".MapDeleteLevelListBtn");
+            }
+            function removebutnotScoreTable() {
+                $("div").remove(".brick");
+                $("div").remove(".brick2");
+                $("#player").remove();
+                $("#ball").remove();
+                $("#genisletme").remove();
+                $("#antidaralma").remove();
+                $("#firstHearth").remove();
+                $("#secondHearth").remove();
+                $("#thirdHearth").remove();
+            }
+            //Oyunu gizle
+            var game = false;
+            var menuacik = false;
+            var mapMenu = true;
+            var createUI = false;
+            var scoreSubmit = false;
+            var gamecredits = false;
+            var gamesettings = false;
+            function HideGame() {
+                //Oyun HUD
+                $("#maindiv").children().hide();
+                $("#gamediv").children().hide();
+                $("#btnMenu").show();
+                $("#gamediv").show();
+                $("#maindiv").show();
+                $("#btnSettings").remove();
+                $("#btnCredits").remove();
+                $("#btnMapMenu").remove();
+                $("#btnCreateLevel").remove();
+                $("#btnGameReflesh").remove();
+            }
+            function ShowGame() {
+                $("#firstHearth").show();
+                $("#secondHearth").show();
+                $("#thirdHearth").show();
+                $("#MapName").show();
+                $("#haritaIsmiTxt").show();
+                $("#score").show();
+                $("#tgScores").show();
+                $("#ball").show();
+                $("#genisletme").show();
+                $("#antidaralma").show();
+                $("#player").show();
+                $(".brick").show();
+                $(".brick2").show();
+                $("#positionstxt").show();
+                mapMenu = false;
+                game = true;
+                createUI = false;
+                scoreSubmit = false;
+                gamecredits = false;
+            }
+            function ShowCreateMode() {
+                $("#btnLevelKaydet").show();
+                $("#CreateBlue").show();
+                $("#CreateOrange").show();
+                $("#ElementlerTxt").show();
+                $("#mapNameTxtBox").show();
+                for (var y = 0; y <= 580; y += 20) {
+                    for (var x = 0; x <= 580; x += 20) {
+                        gamediv.append('<div class="CreatePositionHelper" style="left:' + x + 'px; top:' + y + 'px;"></div>');
+                    }
+                }
+                lookbrickpositionsforCreatePosition();
+                $("#dialogForCreateTutorial").dialog("open");
+                mapMenu = false;
+                game = false;
+                createUI = true;
+                scoreSubmit = false;
+                gamecredits = false;
+            }
+            function ShowMapMenu() {
+                $(".level").show();
+                $(".MapNameLevelList").show();
+                $(".MapDeleteLevelListBtn").show();
+                mapMenu = true;
+                game = false;
+                createUI = false;
+                scoreSubmit = false;
+                gamecredits = false;
+            }
+            function ScoreSubmitMenu() {
+                $("#playerInfo").show();
+                $("#restart").show();
+                $("#MapName").show();
+                $("#haritaIsmiTxt").show();
+                $("#tgScores").show();
+                mapMenu = false;
+                game = false;
+                createUI = false;
+                scoreSubmit = true;
+                gamecredits = false;
+            }
+            function ShowCredits() {
+                $("#GameInfoDiv").show();
+                
+                gamecredits = true;
+                mapMenu = false;
+                game = false;
+                createUI = false;
+                scoreSubmit = false;
+            }
+            function ShowSettings() {
+                $("#GameSettingsDiv").show();
+
+                gamesettings = true;
+                gamecredits = false;
+                mapMenu = false;
+                game = false;
+                createUI = false;
+                scoreSubmit = false;
+            }
+            
+            //RESTART AFTER END
+            $(document).on('click', '#gamediv > #restart', function () {
+                HideGame();
+                $("#tgScores").remove();
+                $("#playerInfo").remove();
+                $("#restart").remove();
+                $("#MapName").remove();
+                $("#haritaIsmiTxt").remove();
+                window.clearInterval(boss);
+                life = 3;
+                clickedmouse = 0;
+                ballremoved = false;
+                ShowGame();
+                game = true;
+                $.get("http://127.0.0.1:8080/getmap", function (get) {
+
+                    $.each(get[clickedOn - 1].brickPositions, function (index, app) {
+                        gamediv.append('<div class="' + app.classInfo + '" style="left:' + app.posInfo.left + 'px; top:' + app.posInfo.top + 'px;"></div>');
+                    });
+                    $('#MapName').text(get[clickedOn - 1].name);
+                    //Brick info alma
+                    var brick = $('.brick');
+                    var brickOuterHeight = 20;
+                    var brickOuterWidth = 40;
+
+                })
+
+
+                //START THE GAMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                StartGame();
+            })
+            $("#btnMenu").click(function () {
+                audioElementButton.play();
+                if (menuacik) {
+                    HideGame();
+                    menuacik = false;
+                    if (createUI) { ShowCreateMode(); CreateMode = true; return; }
+                    if (mapMenu) { ShowMapMenu(); return; }
+                    if (gamecredits) { ShowCredits(); return; }
+                    if (game) { ShowGame(); return; }
+                    if (scoreSubmit) { ScoreSubmitMenu(); return; }
+                    if (gamesettings) { ShowSettings(); return;}
+                }
+                if (CreateMode) { CreateMode = false; }
+                HideGame();
+                menuacik = true;
+                maindiv.append('<button id="btnSettings" class="btnGame" style="position:absolute; left:250px; top:300px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Ayarlar</button>');
+                maindiv.append('<button id="btnCredits" class="btnGame" style="position:absolute; left:250px; top:240px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyun Hakkında</button>');
+                maindiv.append('<button id="btnMapMenu" class="btnGame" style="position:absolute; left:250px; top:180px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Harita Menüsü</button>');
+                maindiv.append('<button id="btnCreateLevel" class="btnGame" style="position:absolute; left:250px; top:120px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Bölüm Oluştur</button>');
+                maindiv.append('<button id="btnGameReflesh" class="btnGame" onclick="setTimeout(function () { window.location.reload(); }, 10)" style="position:absolute; left:250px; top:60px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyunu Yenile</button>');
+            });
+            //Create Level Manual
+
+
+            //Tutorial
+            var tutorialOpen = false;
+            $("#dialogForCreateTutorial").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Devam et": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                        tutorialOpen = true;
+                    },
+                    "Eğitimi Atla": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            //Tutorial End
+            $("#dialogForCreateTutorialEnd").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Eğitimi Bitir": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                        tutorialOpen = false;
+                    }
+                }
+            });
+
+            var CreateBlue = false;
+            var CreateMode = false;
+            var CreateOrange = false;
+            var nameofmap;
+            function PostLevelData() {
+                $.ajax({
+                    type: 'POST',
+                    data: { brickPositions: positions, mapName: nameofmap },
+                    url: 'http://127.0.0.1:8080/postmap',
+                    success: function (data) { LevelMenuAfterPost(data); }
+                });
+            }
+            //btnCreateLevel is clicked ?
+            $(document).on('click', '#maindiv > #btnCreateLevel', function () {
+                if (scoreSubmit) {
+                    $("#tgScores").remove();
+                    $("#playerInfo").remove();
+                    $("#restart").remove();
+                    $("#MapName").remove();
+                    $("#haritaIsmiTxt").remove();
+                }
+                else {
+                    $("div").remove(".brick");
+                    $("div").remove(".brick2");
+                    $("#player").remove();
+                    $("#ball").remove();
+                    $("#genisletme").remove();
+                    $("#antidaralma").remove();
+                    $("#firstHearth").remove();
+                    $("#secondHearth").remove();
+                    $("#thirdHearth").remove();
+
+                }
+                window.clearInterval(boss);
+                life = 3;
+                clickedmouse = 0;
+                ballremoved = false;
+                HideGame();
+                menuacik = false;
+                CreateMode = true;
+                ShowCreateMode();
+            });
+            $(document).on('click', '#maindiv > #btnMapMenu', function () {
+                if (scoreSubmit) {
+                    $("#tgScores").remove();
+                    $("#playerInfo").remove();
+                    $("#restart").remove();
+                    $("#MapName").remove();
+                    $("#haritaIsmiTxt").remove();
+                }
+                else {
+                    $("div").remove(".brick");
+                    $("div").remove(".brick2");
+                    $("#player").remove();
+                    $("#ball").remove();
+                    $("#genisletme").remove();
+                    $("#antidaralma").remove();
+                    $("#firstHearth").remove();
+                    $("#secondHearth").remove();
+                    $("#thirdHearth").remove();
+
+                }
+                window.clearInterval(boss);
+                life = 3;
+                clickedmouse = 0;
+                ballremoved = false;
+                HideGame();
+                menuacik = false;
+                ShowMapMenu();
+
+            });
+            $(document).on('click', '#maindiv > #btnCredits', function () {
+                HideGame();
+
+                menuacik = false;
+                ShowCredits();
+            })
+            $(document).on('click', '#maindiv > #btnSettings', function () {
+                HideGame();
+
+                menuacik = false;
+                ShowSettings();
+            })
+
+            //Harita kaytında isim girilmemişse......
+            $("#dialogForEmptyMapNameTxtBox").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Tamam": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            //Harita kaytında diğer bir harita ile aynı isimdeyse......
+            $("#dialogForSameMapName").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Tamam": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            //Harita kaytında hiç brick yoksa......
+            $("#dialogForNoBrick").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Tamam": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            //btnLevelKaydet is clicked ?
+            $(document).on('click', '#maindiv > #btnLevelKaydet', function () {
+
+                if ($(".brick").length == 0) {
+                    if ($(".brick2").length == 0) {
+                        $("#dialogForNoBrick").dialog("open");
+                        return;
+                    }
+
+                }
+                var samename = false;
+                if ($("#mapNameTxtBox").val().length > 0) {
+                    var forsame = $.get("http://127.0.0.1:8080/getmap", function (get) {
+                        $.each(get, function (index, app) {
+                            if ($("#mapNameTxtBox").val() == app.name) {
+                                $("#dialogForSameMapName").dialog("open");
+                                samename = true;
+                                return false;
+                            }
+
+                        });
+                    });
+
+                    forsame.always(function () {
+                        if (samename) { forsame.abort(); return; }
+                        lookbrickpositionsWithCLass();
+                        nameofmap = $("#mapNameTxtBox").val();
+                        PostLevelData();
+                    })
+
+                }
+                else {
+                    $("#dialogForEmptyMapNameTxtBox").dialog("open");
+
+                }
+
+            });
+            $(document).on('click', '#maindiv > #CreateBlue', function () {
+                if (CreateMode) {
+                    if (tutorialOpen) {
+                        $("#dialogForCreateTutorialEnd").dialog("open");
+                    }
+                    $("#CreateBlue").css({
+                        '-webkit-box-shadow': '1px 1px 60px 0 rgba(0, 192, 235, 1)',
+                        'box-shadow': '1px 1px 60px 0 rgba(0, 192, 235, 1)'
+                    });
+                    if (CreateOrange) {
+                        $("#CreateOrange").css({
+                            '-webkit-box-shadow': '',
+                            'box-shadow': ''
+                        });
+                        CreateOrange = false;
+                    }
+                    CreateBlue = true;
+                }
+
+            });
+            $(document).on('click', '#maindiv > #CreateOrange', function () {
+                if (CreateMode) {
+                    if (tutorialOpen) {
+                        $("#dialogForCreateTutorialEnd").dialog("open");
+                    }
+                    $("#CreateOrange").css({
+                        '-webkit-box-shadow': '1px 1px 60px 0 #ff8929',
+                        'box-shadow': '1px 1px 60px 0 #ff8929'
+                    });
+                    if (CreateBlue) {
+                        $("#CreateBlue").css({
+                            '-webkit-box-shadow': '',
+                            'box-shadow': ''
+                        });
+                        CreateBlue = false;
+                    }
+
+                    CreateOrange = true;
+                }
+            });
+            gamediv.on("contextmenu", function () {
+                return false;
+            });
+            function checkforMagnet(event) {
+                $.each(helperPositions, function (index, app) {
+                    var targetElement = $(event.target);
+                    var targetElementLeft = targetElement.offset().left;
+                    var targetElementTop = targetElement.offset().top;
+                    if (targetElementLeft > app.left && targetElementLeft < (app.left + 20) && targetElementTop > app.top && targetElementTop < (app.top + 20)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                    else if (targetElementLeft < app.left && targetElementLeft > (app.left - 5) && targetElementTop > app.top && targetElementTop < (app.top + 15)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                    else if (targetElementLeft > app.left && targetElementLeft < (app.left + 15) && targetElementTop < app.top && targetElementTop < (app.top - 5)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                    else if (targetElementLeft < app.left && targetElementLeft > (app.left - 5) && targetElementTop < app.top && targetElementTop < (app.top - 5)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                })
+            }
+            function checkforFirstPlaceMagnet($element) {
+                $.each(helperPositions, function (index, app) {
+                    var targetElement = $element;
+                    var targetElementLeft = targetElement.offset().left;
+                    var targetElementTop = targetElement.offset().top;
+                    if (targetElementLeft > app.left && targetElementLeft < (app.left + 20) && targetElementTop > app.top && targetElementTop < (app.top + 20)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                    else if (targetElementLeft < app.left && targetElementLeft > (app.left - 5) && targetElementTop > app.top && targetElementTop < (app.top + 15)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                    else if (targetElementLeft > app.left && targetElementLeft < (app.left + 15) && targetElementTop < app.top && targetElementTop < (app.top - 5)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+                    else if (targetElementLeft < app.left && targetElementLeft > (app.left - 5) && targetElementTop < app.top && targetElementTop < (app.top - 5)) {
+                        targetElement.css({ left: app.left });
+                        targetElement.css({ top: app.top });
+                    }
+
+                })
+            }
+
+            //GetMousePos
+            gamediv.mousemove(function (event) {
+                mouseX = event.pageX;
+                mouseY = event.pageY;
+            });
+            var pressandholdCreate;
+            gamediv.mousedown(function (event) {
+                event.preventDefault();
+                if ($(event.target).attr('id') != "btnMenu" && CreateMode == true) {
+                    if (event.which == 3 && ($(event.target).attr("class") == "brick ui-draggable ui-draggable-handle" || $(event.target).attr("class") == "brick2 ui-draggable ui-draggable-handle")) {
+                        $(event.target).remove();
+                        return;
+                    }
+                    if (event.which == 1) {
+                        if (CreateBlue) {
+                            if (audioElementBallCreatePlace.duration > 0 && !audioElementBallCreatePlace.paused) {
+                                audioElementBallCreatePlace.pause();
+                                audioElementBallCreatePlace.currentTime = 0;
+                                audioElementBallCreatePlace.play();
+                            } else {
+
+                                audioElementBallCreatePlace.play();
+
+                            }
+                            pressandholdCreate = setInterval(function () {
+
+                                gamediv.append('<div class="brick" id="Placed" style="left:' + (mouseX - 20) + 'px; top:' + (mouseY - 10) + 'px;"></div>');
+
+                                $(".brick").draggable({
+                                    cursor: "move",
+                                    cursorAt: { top: 10, left: 20 },
+                                    stop: function (event) { checkforMagnet(event); }
+                                });
+                                lookbrickpositionsNotClicked();
+                                var placed = $("#Placed");
+                                $.each(positions, function (index, app) {
+                                    if (collisioninCreate(placed, app)) {
+                                        placed.remove();
+                                    }
+                                });
+                                checkforFirstPlaceMagnet(placed);
+                                placed.removeAttr('id');
+                            }, 50);
+
+
+                        }
+                        if (CreateOrange) {
+                            if (audioElementBallCreatePlace.duration > 0 && !audioElementBallCreatePlace.paused) {
+                                audioElementBallCreatePlace.pause();
+                                audioElementBallCreatePlace.currentTime = 0;
+                                audioElementBallCreatePlace.play();
+                            } else {
+
+                                audioElementBallCreatePlace.play();
+
+                            }
+                            pressandholdCreate = setInterval(function () {
+
+                                gamediv.append('<div class="brick2" id="Placed" style="left:' + (mouseX - 20) + 'px; top:' + (mouseY - 10) + 'px;"></div>');
+
+                                $(".brick2").draggable({
+                                    cursor: "move",
+                                    cursorAt: { top: 10, left: 20 },
+                                    stop: function (event) { checkforMagnet(event); }
+                                });
+                                lookbrickpositionsNotClicked();
+                                var placed = $("#Placed");
+                                $.each(positions, function (index, app) {
+                                    if (collisioninCreate(placed, app)) {
+                                        placed.remove();
+                                    }
+                                });
+                                checkforFirstPlaceMagnet(placed);
+                                placed.removeAttr('id');
+                            }, 50);
+                        }
+                    }
+                }
+            });
+            gamediv.mouseup(function (event) {
+                event.preventDefault();
+                if ($(event.target).attr('id') != "btnMenu" && CreateMode == true) {
+                    clearInterval(pressandholdCreate);
+                }
+
+            })
+            function PostDeleteMapData() {
+                $.ajax({
+                    type: 'POST',
+                    data: { idofmap: postid },
+                    url: 'http://127.0.0.1:8080/postdeletemap',
+                    success: function (data) {
+                        deletemapposttansonra(data);
+
+                    }
+                });
+            }
+
+
+            //Post Score Data
+            function PostData() {
+                var scorepost = $("#scoreresult").val();
+                var namepost = $("#name").val();
+                var mapNameforScoreList = $('#MapName').text();
+                $.ajax({
+                    type: 'POST',
+                    data: { name: namepost, score: scorepost, mapName: mapNameforScoreList },
+                    url: 'http://127.0.0.1:8080/myaction',
+                    success: function (data) {
+                        scoreposttansonra(data);
+
+                    }
+                });
+            }
+            //deletemap posttan sonra ..........
+            function deletemapposttansonra(data) {
+                $("div").remove(".level");
+                $("h4").remove(".MapNameLevelList");
+                $("div").remove(".MapDeleteLevelListBtn");
+                LevelMenu();
+            }
+            //Score Posttan sonra ......
+            function scoreposttansonra(data) {
+
+
+                $("#playerInfo").remove();
+
+                $("#tgScores").ready(function () {
+
+
+                    $.get("http://127.0.0.1:8080/get", function (get) {
+                        function sortScorefunction(a, b) {
+                            return (b.score - a.score)
+                        }
+                        get.sort(sortScorefunction);
+                        var siralmaNum = 0;
+                        $("#tgScores").empty();
+                        $("#tgScores").append('<tr><th colspan="3">Scores</th></tr><tr><td>NO</td><td>Adı</td><td>Skor</td></tr>');
+                        $.each(get, function (index, app) {
+                            if (app.Map == $("#MapName").text()) {
+                                siralmaNum += 1;
+                                $("#tgScores").append('<tr><td>' + siralmaNum + '</td><td>' + app.name + '</td><td>' + app.score + '</td></tr>');
+                            }
+                        });
+
+
+                    })
+
+                });
+            }
+
+        }
+
+
+            );
+
+
+
+    </script>
+
+</body>
+</html>
