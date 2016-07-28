@@ -310,29 +310,6 @@
             color: white;
         }
 
-        #btnMenu {
-            display: inline-block;
-            -webkit-box-sizing: content-box;
-            -moz-box-sizing: content-box;
-            box-sizing: content-box;
-            cursor: pointer;
-            border: 1px solid #018dc4;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-            font: normal 16px/normal "Times New Roman", Times, serif;
-            color: rgba(255,255,255,0.9);
-            -o-text-overflow: clip;
-            text-overflow: clip;
-            background: #0199d9;
-            -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
-            box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
-            text-shadow: -1px -1px 0 rgba(15,73,168,0.66);
-            -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-            -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-            -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-            transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-        }
-
         .inAdi {
             display: inline-block;
             -webkit-box-sizing: content-box;
@@ -356,11 +333,31 @@
             transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
         }
 
-        #GameInfoDiv {
+        ::-webkit-input-placeholder {
+            font: normal 16px/normal "Times New Roman", Times, serif;
+            color: white;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            font: normal 16px/normal "Times New Roman", Times, serif;
+            color: white;
+        }
+
+        ::-moz-placeholder { /* Firefox 19+ */
+            font: normal 16px/normal "Times New Roman", Times, serif;
+            color: white;
+        }
+
+        :-ms-input-placeholder {
+            font: normal 16px/normal "Times New Roman", Times, serif;
+            color: white;
+        }
+
+        .GameToolDiv {
             -webkit-box-sizing: content-box;
             -moz-box-sizing: content-box;
             box-sizing: content-box;
-            position:absolute;
+            position: absolute;
             width: 300px;
             height: 500px;
             left: 150px;
@@ -379,30 +376,9 @@
             box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
             text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
         }
-        #GameSettingsDiv {
-            -webkit-box-sizing: content-box;
-            -moz-box-sizing: content-box;
-            box-sizing: content-box;
-            position:absolute;
-            width: 300px;
-            height: 500px;
-            left: 150px;
-            top: 50px;
-            overflow: hidden;
-            border: none;
-            -webkit-border-radius: 40px;
-            border-radius: 40px;
-            font: normal 16px/1 "Times New Roman", Times, serif;
-            color: rgba(255,255,255,1);
-            text-align: center;
-            -o-text-overflow: ellipsis;
-            text-overflow: ellipsis;
-            background: rgba(1,153,217,1);
-            -webkit-box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
-            box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        .fontCharcoal{
+            font: normal 16px/normal Impact, Charcoal, sans-serif;
         }
-        
         .CreatePositionHelper {
             width: 20px;
             height: 20px;
@@ -457,30 +433,34 @@
             </tr>
         </table>
 
-        <div id="gamediv" class="unselectable" style="background-image: url(https://s31.postimg.org/evfpc80ob/back.png); width: 600px; height: 600px; background-size: 600px 600px;">
-            <button id="btnMenu" style="background-image: url(https://cdn4.iconfinder.com/data/icons/tupix-1/30/list-512.png); background-repeat:no-repeat; background-size: 50px 55px; width:40px; height:50px; left:725px; top:0px; position:absolute; "></button>
-            <div id="GameInfoDiv" style="display:none;">
-                <p style="font:normal 40px/normal Impact, Charcoal, sans-serif;">YAPIMCILAR</p>
-                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>Programcı(Gerçek kahraman ;D  )</u></p>
-                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Fatih Aslancan</p>
-                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>Oyun Fikri</u></p>
-                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Metin Apaydın</p>
-                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>Oyun Test(Playtesting)</u></p>
-                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Mustafa Apaydın</p>
-                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Osman Aslancan</p>
-                <p style="font:normal 16px/normal Impact, Charcoal, sans-serif;">Ramazan Pilavcı</p>
-                <p style="font:normal 8px/normal Impact, Charcoal, sans-serif;">Copyright © 2015 - 2016 GENOX Software Engineering -- All Rights Reserved.<br />© 2015 - 2016 GENOX Software Engineering -- Tüm Hakları Saklıdır.</p>
+        <div id="gamediv" class="unselectable" style="background-image: url(https://s31.postimg.org/evfpc80ob/back.png); background-repeat:no-repeat; width: 600px; height: 600px; background-size: 600px 600px;">
+            <button id="btnMenu" class="btnGame" style="background-image: url(https://cdn4.iconfinder.com/data/icons/tupix-1/30/list-512.png); padding: 0px 0px; background-repeat:no-repeat; background-size: 50px 50px; width:50px; height:50px; left:725px; top:0px; position:absolute; "></button>
+            <button id="btnBack" class="btnGame" style="background-image: url(http://www.thinkvacuums.com/images/arrow_left.png); padding: 0px 0px; background-repeat:no-repeat; background-size: 50px 50px; width:50px; height:50px; left:725px; top:0px; position:absolute; "></button>
+            <img id="LogoIMG" src="http://imgh.us/Logo_335.png" style="position: absolute; top: 50px; left:0px; width: 600px; height: 133px" />
+            <div id="GameInfoDiv" class="GameToolDiv" style="display:none;">
+                <p class="fontCharcoal" style="font-size:40px">YAPIMCILAR</p>
+                <p class="fontCharcoal" style="font-size:22px"><u>Programcı(Gerçek kahraman ;D  )</u></p>
+                <p class="fontCharcoal" style="font-size:16px">Fatih Aslancan</p>
+                <p class="fontCharcoal" style="font-size:22px"><u>Oyun Fikri</u></p>
+                <p class="fontCharcoal" style="font-size:16px">Metin Apaydın</p>
+                <p class="fontCharcoal" style="font-size:22px"><u>Oyun Test(Playtesting)</u></p>
+                <p class="fontCharcoal" style="font-size:16px">Mustafa Apaydın</p>
+                <p class="fontCharcoal" style="font-size:16px">Osman Aslancan</p>
+                <p class="fontCharcoal" style="font-size:16px">Ramazan Pilavcı</p>
+                <p class="fontCharcoal" style="font-size:8px">Copyright © 2015 - 2016 GENOX Software Engineering -- All Rights Reserved.<br />© 2015 - 2016 GENOX Software Engineering -- Tüm Hakları Saklıdır.</p>
 
             </div>
-            <div id="GameSettingsDiv" style="display:none;">
-                <p style="font:normal 40px/normal Impact, Charcoal, sans-serif;">AYARLAR</p>
-                <p style="font:normal 22px/normal Impact, Charcoal, sans-serif;"><u>SES</u></p>
+             <div id="ScoreSubmitDiv" class="GameToolDiv" style="display:none;">
+             </div>
+            <div id="GameSettingsDiv" class="GameToolDiv" style="display:none;">
+                <p class="fontCharcoal" style="font-size:40px">AYARLAR</p>
+                <p class="fontCharcoal" style="font-size:22px"><u>SES</u></p>
                 <input type="checkbox" name="music" id="checkboxMusic" checked>Müzik<br>
                 <br />
                 <br />
                 <br />
                 <br />
-                <p style="font:normal 40px/normal Impact, Charcoal, sans-serif;">Game Version : 0.2.0 Alpha</p>
+                <p class="fontCharcoal" style="font-size:30px">Game Version : 0.2.1 Alpha</p>
             </div>
         </div>
 
@@ -569,7 +549,7 @@
             $(document).on('click', '#gamediv > .btnGame', function (e) {
                 audioElementButton.play();
             })
-            $('#checkboxMusic').change(function(){
+            $('#checkboxMusic').change(function () {
                 if (this.checked == false) {
                     audioElement.pause();
                 }
@@ -583,12 +563,15 @@
 
                     }
                 }
-               
+
             })
 
+
+            //Create Level Manual
+            var getMapsAction;
             //Level Seçenekleri Dizme
             function LevelMenu() {
-                var jqxhr = $.get("http://127.0.0.1:8080/getmap", function (get) {
+                getMapsAction = $.get("http://127.0.0.1:8080/getmap", function (get) {
                     idLevel = 0;
                     for (z = 20; z <= gameheight ; z += 150) {
                         for (i = 5; i <= gamewidth - 50 ; i += 150) {
@@ -607,7 +590,7 @@
                     });
                 });
                 //Level Seçme effect
-                jqxhr.always(function () {
+                getMapsAction.always(function () {
                     $("#gamediv .level").hover(function () {
                         $(this).animate({ 'background-color': '#8bd6f4' }, 300);
                     }, function () {
@@ -621,7 +604,7 @@
                 });
 
             }
-            LevelMenu();
+
 
             //Level Kaydettikten sonra
             function LevelMenuAfterPost(data) {
@@ -663,6 +646,49 @@
                 StartGame();
             });
 
+            LevelMenu();
+            maindiv.append('<button id="MainbtnSettings" class="btnGame" style="position:absolute; left:230px; top:360px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Ayarlar</button>');
+            maindiv.append('<button id="MainbtnCredits" class="btnGame" style="position:absolute; left:230px; top:300px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyun Hakkında</button>');
+            maindiv.append('<button id="MainbtnCreateLevel" class="btnGame" style="position:absolute; left:230px; top:240px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Bölüm Oluştur</button>');
+            maindiv.append('<button id="MainbtnStartGame" class="btnGame" style="position:absolute; left:230px; top:180px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Başlat</button>');
+            getMapsAction.always(function () {
+                HideGame();
+                ShowMainMenu();
+            })
+
+            $(document).on('click', '#maindiv > #MainbtnStartGame', function () {
+                HideGame();
+                ShowMapMenu();
+
+            });
+            $(document).on('click', '#maindiv > #MainbtnCredits', function () {
+                HideGame();
+                ShowCredits();
+                $("#btnBack").show();
+                $("#btnMenu").hide();
+            });
+            $(document).on('click', '#maindiv > #MainbtnCreateLevel', function () {
+                HideGame();
+                CreateMode = true;
+                ShowCreateMode();
+                $("#btnBack").show();
+                $("#btnMenu").hide();
+            });
+            $(document).on('click', '#maindiv > #MainbtnSettings', function () {
+                HideGame();
+                ShowSettings();
+                $("#btnBack").show();
+                $("#btnMenu").hide();
+            });
+
+            $("#btnBack").click(function () {
+                audioElementButton.play();
+                HideGame();
+                if (CreateMode) { CreateMode = false; }
+                ShowMainMenu();
+            })
+
+
             //Harita Silme onay aşaması
             var postid;
             $(document).on('click', '#gamediv > .MapDeleteLevelListBtn', function (e) {
@@ -693,7 +719,7 @@
                         audioElementButton.play();
                         $(this).dialog("close");
                         PostDeleteMapData();
-                        
+
                     },
                     "İptal et": function () {
                         audioElementButton.play();
@@ -908,9 +934,10 @@
                                     scoreSubmit = true;
                                     $("#score").remove();
                                     $("#thirdHearth").remove();
-                                    gamediv.append('<div id="playerInfo" style="position:absolute; left:50px; top:50px;"><h1 style="font-size:x-large; color: white;" >SCORE!!!</h1><div><label style="font-size:x-large; color: white;" for="name">İsim:</label><input type="text" onclick="this.select()" class="inAdi" id="name" name="name" placeholder="İsminizi yazın" /><label style="font-size:x-large; color: white;" for="scoreresult">Score : ' + point + '</label><input type="hidden" id="scoreresult" name="scoreresult" value="1"/><button class="btnGame" id="kayit">Kaydet</button></div>');
+                                    $("#ScoreSubmitDiv").show();
+                                    $("#ScoreSubmitDiv").append('<h1 class="fontCharcoal"; style="font-size:40px"; color: white;" >Seviye Bitti!</h1></br><label style="class="fontCharcoal"; style="font-size:40px"; color: white;" for="scoreresult">Score : ' + point + '</br></label><input type="hidden" id="scoreresult" name="scoreresult" value="1"/><label class="fontCharcoal"; style="font-size:30px"; color: white;" for="name"></br>İsim : </label><input type="text" onclick="this.select()" class="inAdi" id="name" name="name" placeholder="İsminizi yazın" /><button class="btnGame" style="position:absolute; left:80px; top:300px; height:50px;" id="kayit">Skoru Kaydet</button>');
                                     $("#scoreresult").val(point);
-                                    gamediv.append('<button class="btnGame" id="restart" style=" background-image: url(https://lh5.ggpht.com/xLrN7HaSUMCKR-fkAynL3xJksnI8p3HRLugvLK240-yBKp9hywaTYD5yiSDiLhwOOMrf=w170); background-repeat: no-repeat; background-size: 50px 50px; position:absolute; left:50px; top:300px; width: 50px;" ></button>');
+                                    $("#ScoreSubmitDiv").append('<button class="btnGame" id="restart" style="position:absolute; left:80px; top:400px; height:50px;" >Yeniden Başla</button>');
                                 }
 
                             }
@@ -1150,7 +1177,7 @@
 
                 //Tıklama ile başlama
                 gamediv.click(function () {
-                    if (life != 0 && CreateMode == false && $(event.target).attr('id') != "btnMenu" && game == true) {
+                    if (life != 0 && CreateMode == false && $(event.target).attr('id') != "btnMenu" && $(event.target).attr('id') != "btnBack" && game == true) {
                         if (clickedmouse == 0) {
                             clickedmouse = 1;
                             lookbrickpositions();
@@ -1371,9 +1398,9 @@
                 //Oyun HUD
                 $("#maindiv").children().hide();
                 $("#gamediv").children().hide();
-                $("#btnMenu").show();
                 $("#gamediv").show();
                 $("#maindiv").show();
+                $("#btnExit").remove();
                 $("#btnSettings").remove();
                 $("#btnCredits").remove();
                 $("#btnMapMenu").remove();
@@ -1381,6 +1408,7 @@
                 $("#btnGameReflesh").remove();
             }
             function ShowGame() {
+                $("#btnMenu").show();
                 $("#firstHearth").show();
                 $("#secondHearth").show();
                 $("#thirdHearth").show();
@@ -1402,6 +1430,7 @@
                 gamecredits = false;
             }
             function ShowCreateMode() {
+                $("#btnMenu").show();
                 $("#btnLevelKaydet").show();
                 $("#CreateBlue").show();
                 $("#CreateOrange").show();
@@ -1413,7 +1442,9 @@
                     }
                 }
                 lookbrickpositionsforCreatePosition();
-                $("#dialogForCreateTutorial").dialog("open");
+                if (tutorialOpen == 1)
+                    $("#dialogForCreateTutorial").dialog("open");
+
                 mapMenu = false;
                 game = false;
                 createUI = true;
@@ -1421,6 +1452,7 @@
                 gamecredits = false;
             }
             function ShowMapMenu() {
+                $("#btnMenu").show();
                 $(".level").show();
                 $(".MapNameLevelList").show();
                 $(".MapDeleteLevelListBtn").show();
@@ -1431,7 +1463,8 @@
                 gamecredits = false;
             }
             function ScoreSubmitMenu() {
-                $("#playerInfo").show();
+                $("#btnMenu").show();
+                $("#ScoreSubmitDiv").show();
                 $("#restart").show();
                 $("#MapName").show();
                 $("#haritaIsmiTxt").show();
@@ -1443,8 +1476,9 @@
                 gamecredits = false;
             }
             function ShowCredits() {
+                $("#btnMenu").show();
                 $("#GameInfoDiv").show();
-                
+
                 gamecredits = true;
                 mapMenu = false;
                 game = false;
@@ -1452,6 +1486,7 @@
                 scoreSubmit = false;
             }
             function ShowSettings() {
+                $("#btnMenu").show();
                 $("#GameSettingsDiv").show();
 
                 gamesettings = true;
@@ -1461,12 +1496,20 @@
                 createUI = false;
                 scoreSubmit = false;
             }
-            
+            function ShowMainMenu() {
+                $("#LogoIMG").show();
+                $("#MainbtnSettings").show();
+                $("#MainbtnCredits").show();
+                $("#MainbtnCreateLevel").show();
+                $("#MainbtnStartGame").show();
+
+            }
             //RESTART AFTER END
             $(document).on('click', '#gamediv > #restart', function () {
                 HideGame();
                 $("#tgScores").remove();
-                $("#playerInfo").remove();
+                $("#ScoreSubmitDiv").empty();
+                $("#ScoreSubmitDiv").hide();
                 $("#restart").remove();
                 $("#MapName").remove();
                 $("#haritaIsmiTxt").remove();
@@ -1503,22 +1546,24 @@
                     if (gamecredits) { ShowCredits(); return; }
                     if (game) { ShowGame(); return; }
                     if (scoreSubmit) { ScoreSubmitMenu(); return; }
-                    if (gamesettings) { ShowSettings(); return;}
+                    if (gamesettings) { ShowSettings(); return; }
                 }
                 if (CreateMode) { CreateMode = false; }
                 HideGame();
+                $("#btnMenu").show();
                 menuacik = true;
-                maindiv.append('<button id="btnSettings" class="btnGame" style="position:absolute; left:250px; top:300px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Ayarlar</button>');
-                maindiv.append('<button id="btnCredits" class="btnGame" style="position:absolute; left:250px; top:240px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyun Hakkında</button>');
-                maindiv.append('<button id="btnMapMenu" class="btnGame" style="position:absolute; left:250px; top:180px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Harita Menüsü</button>');
-                maindiv.append('<button id="btnCreateLevel" class="btnGame" style="position:absolute; left:250px; top:120px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Bölüm Oluştur</button>');
-                maindiv.append('<button id="btnGameReflesh" class="btnGame" onclick="setTimeout(function () { window.location.reload(); }, 10)" style="position:absolute; left:250px; top:60px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyunu Yenile</button>');
+                maindiv.append('<button id="btnExit" class="btnGame" style="position:absolute; left:230px; top:360px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Çık</button>');
+                maindiv.append('<button id="btnSettings" class="btnGame" style="position:absolute; left:230px; top:300px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Ayarlar</button>');
+                maindiv.append('<button id="btnCredits" class="btnGame" style="position:absolute; left:230px; top:240px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyun Hakkında</button>');
+                maindiv.append('<button id="btnMapMenu" class="btnGame" style="position:absolute; left:230px; top:180px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Harita Menüsü</button>');
+                maindiv.append('<button id="btnCreateLevel" class="btnGame" style="position:absolute; left:230px; top:120px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Bölüm Oluştur</button>');
+                maindiv.append('<button id="btnGameReflesh" class="btnGame" onclick="setTimeout(function () { window.location.reload(); }, 10)" style="position:absolute; left:230px; top:60px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyunu Yenile</button>');
             });
-            //Create Level Manual
+
 
 
             //Tutorial
-            var tutorialOpen = false;
+            var tutorialOpen = 1;
             $("#dialogForCreateTutorial").dialog({
                 autoOpen: false,
                 resizable: false,
@@ -1537,11 +1582,12 @@
                     "Devam et": function () {
                         audioElementButton.play();
                         $(this).dialog("close");
-                        tutorialOpen = true;
+                        tutorialOpen = 2;
                     },
                     "Eğitimi Atla": function () {
                         audioElementButton.play();
                         $(this).dialog("close");
+                        tutorialOpen = 3;
                     }
                 }
             });
@@ -1565,7 +1611,7 @@
                     "Eğitimi Bitir": function () {
                         audioElementButton.play();
                         $(this).dialog("close");
-                        tutorialOpen = false;
+                        tutorialOpen = 3;
                     }
                 }
             });
@@ -1583,10 +1629,12 @@
                 });
             }
             //btnCreateLevel is clicked ?
+
             $(document).on('click', '#maindiv > #btnCreateLevel', function () {
                 if (scoreSubmit) {
                     $("#tgScores").remove();
-                    $("#playerInfo").remove();
+                    $("#ScoreSubmitDiv").empty();
+                    $("#ScoreSubmitDiv").hide();
                     $("#restart").remove();
                     $("#MapName").remove();
                     $("#haritaIsmiTxt").remove();
@@ -1615,7 +1663,8 @@
             $(document).on('click', '#maindiv > #btnMapMenu', function () {
                 if (scoreSubmit) {
                     $("#tgScores").remove();
-                    $("#playerInfo").remove();
+                    $("#ScoreSubmitDiv").empty();
+                    $("#ScoreSubmitDiv").hide();
                     $("#restart").remove();
                     $("#MapName").remove();
                     $("#haritaIsmiTxt").remove();
@@ -1652,6 +1701,12 @@
 
                 menuacik = false;
                 ShowSettings();
+            })
+            $(document).on('click', '#maindiv > #btnExit', function () {
+                HideGame();
+
+                menuacik = false;
+                ShowMainMenu();
             })
 
             //Harita kaytında isim girilmemişse......
@@ -1759,7 +1814,7 @@
             });
             $(document).on('click', '#maindiv > #CreateBlue', function () {
                 if (CreateMode) {
-                    if (tutorialOpen) {
+                    if (tutorialOpen == 2) {
                         $("#dialogForCreateTutorialEnd").dialog("open");
                     }
                     $("#CreateBlue").css({
@@ -1779,7 +1834,7 @@
             });
             $(document).on('click', '#maindiv > #CreateOrange', function () {
                 if (CreateMode) {
-                    if (tutorialOpen) {
+                    if (tutorialOpen == 2) {
                         $("#dialogForCreateTutorialEnd").dialog("open");
                     }
                     $("#CreateOrange").css({
@@ -1856,7 +1911,7 @@
             var pressandholdCreate;
             gamediv.mousedown(function (event) {
                 event.preventDefault();
-                if ($(event.target).attr('id') != "btnMenu" && CreateMode == true) {
+                if ($(event.target).attr('id') != "btnMenu" && $(event.target).attr('id') != "btnBack" && CreateMode == true) {
                     if (event.which == 3 && ($(event.target).attr("class") == "brick ui-draggable ui-draggable-handle" || $(event.target).attr("class") == "brick2 ui-draggable ui-draggable-handle")) {
                         $(event.target).remove();
                         return;
@@ -1929,7 +1984,7 @@
             });
             gamediv.mouseup(function (event) {
                 event.preventDefault();
-                if ($(event.target).attr('id') != "btnMenu" && CreateMode == true) {
+                if ($(event.target).attr('id') != "btnMenu" && $(event.target).attr('id') != "btnBack" && CreateMode == true) {
                     clearInterval(pressandholdCreate);
                 }
 
@@ -1973,8 +2028,30 @@
             function scoreposttansonra(data) {
 
 
-                $("#playerInfo").remove();
+                $("#ScoreSubmitDiv").empty();
+                $("#ScoreSubmitDiv").hide();
+                window.clearInterval(boss);
+                life = 3;
+                clickedmouse = 0;
+                ballremoved = false;
+                ShowGame();
+                game = true;
+                $.get("http://127.0.0.1:8080/getmap", function (get) {
 
+                    $.each(get[clickedOn - 1].brickPositions, function (index, app) {
+                        gamediv.append('<div class="' + app.classInfo + '" style="left:' + app.posInfo.left + 'px; top:' + app.posInfo.top + 'px;"></div>');
+                    });
+                    $('#MapName').text(get[clickedOn - 1].name);
+                    //Brick info alma
+                    var brick = $('.brick');
+                    var brickOuterHeight = 20;
+                    var brickOuterWidth = 40;
+
+                })
+
+
+                //START THE GAMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                StartGame();
                 $("#tgScores").ready(function () {
 
 
