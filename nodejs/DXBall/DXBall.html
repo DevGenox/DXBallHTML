@@ -376,9 +376,11 @@
             box-shadow: 1px 1px 100px 0 rgba(1,153,217,1);
             text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
         }
-        .fontCharcoal{
+
+        .fontCharcoal {
             font: normal 16px/normal Impact, Charcoal, sans-serif;
         }
+
         .CreatePositionHelper {
             width: 20px;
             height: 20px;
@@ -404,6 +406,12 @@
 <body>
     <div id="maindiv" class="unselectable" style="position:absolute; left: 0px; top: 0px; width: 1000px; height: 1000px;">
         <h4 id="positionstxt" class="unselectable" style="display:none; position:absolute; left:20px; top:800px;"></h4>
+        <div id="dialogForTravelMenuWhenGametoCreateUI" title="UYARI!!!">
+            <p>Bu bölümden çıkmak istediğinize emin misiniz?<br>İlerlemeleriniz kayıt edilmeyecek!</p>
+        </div>
+        <div id="dialogForTravelMenuWhenGametoMaps" title="UYARI!!!">
+            <p>Bu bölümden çıkmak istediğinize emin misiniz?<br>İlerlemeleriniz kayıt edilmeyecek!</p>
+        </div>
         <div id="dialogForDeleteMap" title="HARİTA SİLME">
             <p>Seçilen haritayı silmek istediğinize emin misiniz?</p>
         </div>
@@ -450,8 +458,8 @@
                 <p class="fontCharcoal" style="font-size:8px">Copyright © 2015 - 2016 GENOX Software Engineering -- All Rights Reserved.<br />© 2015 - 2016 GENOX Software Engineering -- Tüm Hakları Saklıdır.</p>
 
             </div>
-             <div id="ScoreSubmitDiv" class="GameToolDiv" style="display:none;">
-             </div>
+            <div id="ScoreSubmitDiv" class="GameToolDiv" style="display:none;">
+            </div>
             <div id="GameSettingsDiv" class="GameToolDiv" style="display:none;">
                 <p class="fontCharcoal" style="font-size:40px">AYARLAR</p>
                 <p class="fontCharcoal" style="font-size:22px"><u>SES</u></p>
@@ -838,10 +846,16 @@
                             //Top Hareketi
                             var x = ballposition.left;
                             var y = ballposition.top;
-                            if (x < 0 || x > gamewidth - ballSize.width)
-                            { audioElementBounce.play(); dx = -dx; }
+                            if (x < 0 || x > gamewidth - (ballSize.width + 2))
+                            {
+                                audioElementBounce.play();
+                                dx = -dx;
+                            }
                             if (y < 0 || y > gameheight + 40)
-                            { audioElementBounce.play(); dy = -dy; }
+                            {
+                                audioElementBounce.play();
+                                dy = -dy;
+                            }
                             var executed = false;
 
                             // Oyuncu Çarpışma
@@ -941,7 +955,15 @@
                                 }
 
                             }
-                            $('#kayit').click(PostData);
+                            $('#kayit').click(function () {
+                                if ($("#name").val().length == 0) {
+                                    $("#name").val("İsimsiz Kahraman")
+                                }
+                                    PostData();
+         
+                            });
+
+                                
 
 
                             /*       $.get("http://127.0.0.1:8080/get", function (get) {
@@ -1259,8 +1281,24 @@
                 var b2 = y2 + h2;
                 var r2 = x2 + w2;
 
-                if (b1 > b2 || y2 > y1 || r1 < x2 || x1 > r2) return false;
-                return true;
+                if ((b1 >= y2) && (y1 <= b2))
+                {
+                    if(dx > 0)
+                    {
+                        if(r1 >= x2 && r1 <= (x2 + 5))
+                        {
+                            return true;
+                        }
+                    }
+                    if(dx < 0)
+                    {
+                        if(x1 <= r2 && x1 >= (r2 - 5))
+                        {
+                            return true
+                        }
+                    }
+                }
+                return false;
             }
             //Collision Defination for from yukarıdan aşağıdan
             function collisionY($div1, div2) {
@@ -1278,8 +1316,20 @@
                 var b2 = y2 + h2;
                 var r2 = x2 + w2;
 
-                if (b1 < y2 || y1 > b2 || r1 > r2 || x1 < x2) return false;
-                return true;
+                if ((r1 >= x2) && (x1 <= r2))
+                {
+                    if (dy > 0) {
+                        if (b1 >= y2 && b1 < (y2 + 5)) {
+                            return true;
+                        }
+                    }
+                    if (dy < 0) {
+                        if (y1 <= b2 && y1 >= (b2 - 5)) {
+                            return true
+                        }
+                    }
+                }
+                return false;
             }
             //tüm brickler pozisyon kontrolü
             function lookbrickpositions() {
@@ -1405,7 +1455,7 @@
                 $("#btnCredits").remove();
                 $("#btnMapMenu").remove();
                 $("#btnCreateLevel").remove();
-                $("#btnGameReflesh").remove();
+                $("#btnGameReturn").remove();
             }
             function ShowGame() {
                 $("#btnMenu").show();
@@ -1428,6 +1478,7 @@
                 createUI = false;
                 scoreSubmit = false;
                 gamecredits = false;
+                gamesettings = false;
             }
             function ShowCreateMode() {
                 $("#btnMenu").show();
@@ -1450,6 +1501,7 @@
                 createUI = true;
                 scoreSubmit = false;
                 gamecredits = false;
+                gamesettings = false;
             }
             function ShowMapMenu() {
                 $("#btnMenu").show();
@@ -1461,6 +1513,7 @@
                 createUI = false;
                 scoreSubmit = false;
                 gamecredits = false;
+                gamesettings = false;
             }
             function ScoreSubmitMenu() {
                 $("#btnMenu").show();
@@ -1474,6 +1527,7 @@
                 createUI = false;
                 scoreSubmit = true;
                 gamecredits = false;
+                gamesettings = false;
             }
             function ShowCredits() {
                 $("#btnMenu").show();
@@ -1484,6 +1538,7 @@
                 game = false;
                 createUI = false;
                 scoreSubmit = false;
+                gamesettings = false;
             }
             function ShowSettings() {
                 $("#btnMenu").show();
@@ -1505,7 +1560,7 @@
 
             }
             //RESTART AFTER END
-            $(document).on('click', '#gamediv > #restart', function () {
+            $(document).on('click', '#ScoreSubmitDiv > #restart', function () {
                 HideGame();
                 $("#tgScores").remove();
                 $("#ScoreSubmitDiv").empty();
@@ -1557,7 +1612,9 @@
                 maindiv.append('<button id="btnCredits" class="btnGame" style="position:absolute; left:230px; top:240px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyun Hakkında</button>');
                 maindiv.append('<button id="btnMapMenu" class="btnGame" style="position:absolute; left:230px; top:180px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Harita Menüsü</button>');
                 maindiv.append('<button id="btnCreateLevel" class="btnGame" style="position:absolute; left:230px; top:120px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Bölüm Oluştur</button>');
-                maindiv.append('<button id="btnGameReflesh" class="btnGame" onclick="setTimeout(function () { window.location.reload(); }, 10)" style="position:absolute; left:230px; top:60px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyunu Yenile</button>');
+                if (game || gamecredits || gamesettings )
+                { maindiv.append('<button id="btnGameReturn" class="btnGame" style="position:absolute; left:230px; top:60px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyuna Dön</button>'); }
+                
             });
 
 
@@ -1615,7 +1672,7 @@
                     }
                 }
             });
-
+            //Level Posizyon Bilgilerin Yolla
             var CreateBlue = false;
             var CreateMode = false;
             var CreateOrange = false;
@@ -1629,8 +1686,10 @@
                 });
             }
             //btnCreateLevel is clicked ?
-
+            var BrokeTheGame = false;
             $(document).on('click', '#maindiv > #btnCreateLevel', function () {
+                audioElementButton.play();
+                if (game || scoreSubmit) { $("#dialogForTravelMenuWhenGametoCreateUI").dialog("open"); return; }
                 if (scoreSubmit) {
                     $("#tgScores").remove();
                     $("#ScoreSubmitDiv").empty();
@@ -1660,7 +1719,64 @@
                 CreateMode = true;
                 ShowCreateMode();
             });
+            $("#dialogForTravelMenuWhenGametoCreateUI").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Evet": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                        if (scoreSubmit) {
+                            $("#tgScores").remove();
+                            $("#ScoreSubmitDiv").empty();
+                            $("#ScoreSubmitDiv").hide();
+                            $("#restart").remove();
+                            $("#MapName").remove();
+                            $("#haritaIsmiTxt").remove();
+                        }
+                        else {
+                            $("div").remove(".brick");
+                            $("div").remove(".brick2");
+                            $("#player").remove();
+                            $("#ball").remove();
+                            $("#genisletme").remove();
+                            $("#antidaralma").remove();
+                            $("#firstHearth").remove();
+                            $("#secondHearth").remove();
+                            $("#thirdHearth").remove();
+
+                        }
+                        window.clearInterval(boss);
+                        life = 3;
+                        clickedmouse = 0;
+                        ballremoved = false;
+                        HideGame();
+                        menuacik = false;
+                        CreateMode = true;
+                        ShowCreateMode();
+
+                    },
+                    "Hayır": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            
             $(document).on('click', '#maindiv > #btnMapMenu', function () {
+                audioElementButton.play();
+                if (game || scoreSubmit) { $("#dialogForTravelMenuWhenGametoMaps").dialog("open"); return;}
                 if (scoreSubmit) {
                     $("#tgScores").remove();
                     $("#ScoreSubmitDiv").empty();
@@ -1688,7 +1804,60 @@
                 HideGame();
                 menuacik = false;
                 ShowMapMenu();
+            });
+            $("#dialogForTravelMenuWhenGametoMaps").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: "auto",
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 500
+                },
+                buttons: {
+                    "Evet": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                        if (scoreSubmit) {
+                            $("#tgScores").remove();
+                            $("#ScoreSubmitDiv").empty();
+                            $("#ScoreSubmitDiv").hide();
+                            $("#restart").remove();
+                            $("#MapName").remove();
+                            $("#haritaIsmiTxt").remove();
+                        }
+                        else {
+                            $("div").remove(".brick");
+                            $("div").remove(".brick2");
+                            $("#player").remove();
+                            $("#ball").remove();
+                            $("#genisletme").remove();
+                            $("#antidaralma").remove();
+                            $("#firstHearth").remove();
+                            $("#secondHearth").remove();
+                            $("#thirdHearth").remove();
 
+                        }
+                        window.clearInterval(boss);
+                        life = 3;
+                        clickedmouse = 0;
+                        ballremoved = false;
+                        HideGame();
+                        menuacik = false;
+                        CreateMode = true;
+                        ShowCreateMode();
+
+                    },
+                    "Hayır": function () {
+                        audioElementButton.play();
+                        $(this).dialog("close");
+                    }
+                }
             });
             $(document).on('click', '#maindiv > #btnCredits', function () {
                 HideGame();
@@ -1707,6 +1876,12 @@
 
                 menuacik = false;
                 ShowMainMenu();
+            })
+            $(document).on('click', '#maindiv > #btnGameReturn', function () {
+                HideGame();
+
+                menuacik = false;
+                ShowGame();
             })
 
             //Harita kaytında isim girilmemişse......
