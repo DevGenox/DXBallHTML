@@ -298,7 +298,7 @@
             -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
             -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
             transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-            background-image: url(http://simpleicon.com/wp-content/uploads/cross.png);
+            background-image: url(http://localhost:8080/images/cross.png);
             background-repeat: no-repeat;
             background-size: 15px 15px;
             position: absolute;
@@ -441,10 +441,10 @@
             </tr>
         </table>
 
-        <div id="gamediv" class="unselectable" style="background-image: url(https://s31.postimg.org/evfpc80ob/back.png); background-repeat:no-repeat; width: 600px; height: 600px; background-size: 600px 600px;">
-            <button id="btnMenu" class="btnGame" style="background-image: url(https://cdn4.iconfinder.com/data/icons/tupix-1/30/list-512.png); padding: 0px 0px; background-repeat:no-repeat; background-size: 50px 50px; width:50px; height:50px; left:725px; top:0px; position:absolute; "></button>
-            <button id="btnBack" class="btnGame" style="background-image: url(http://www.thinkvacuums.com/images/arrow_left.png); padding: 0px 0px; background-repeat:no-repeat; background-size: 50px 50px; width:50px; height:50px; left:725px; top:0px; position:absolute; "></button>
-            <img id="LogoIMG" src="http://imgh.us/Logo_335.png" style="position: absolute; top: 50px; left:0px; width: 600px; height: 133px" />
+        <div id="gamediv" class="unselectable" style="background-image: url('http://localhost:8080/images/backGround.png'); background-repeat:no-repeat; width: 600px; height: 600px; background-size: 600px 600px;">
+            <button id="btnMenu" class="btnGame" style="background-image: url(http://localhost:8080/images/menuIcon.png); padding: 0px 0px; background-repeat:no-repeat; background-size: 50px 50px; width:50px; height:50px; left:725px; top:0px; position:absolute; "></button>
+            <button id="btnBack" class="btnGame" style="background-image: url(http://localhost:8080/images/arrow_left.png); padding: 0px 0px; background-repeat:no-repeat; background-size: 50px 50px; width:50px; height:50px; left:725px; top:0px; position:absolute; "></button>
+            <img id="LogoIMG" src="http://localhost:8080/images/Logo.png" style="position: absolute; top: 50px; left:0px; width: 600px; height: 133px" />
             <div id="GameInfoDiv" class="GameToolDiv" style="display:none;">
                 <p class="fontCharcoal" style="font-size:40px">YAPIMCILAR</p>
                 <p class="fontCharcoal" style="font-size:22px"><u>Programcı(Gerçek kahraman ;D  )</u></p>
@@ -464,6 +464,7 @@
                 <p class="fontCharcoal" style="font-size:40px">AYARLAR</p>
                 <p class="fontCharcoal" style="font-size:22px"><u>SES</u></p>
                 <input type="checkbox" name="music" id="checkboxMusic" checked>Müzik<br>
+                <input type="checkbox" name="egitim" id="checkboxEgitim" checked>Eğitim<br>
                 <br />
                 <br />
                 <br />
@@ -507,7 +508,7 @@
 
             //Music
             var audioElement = document.createElement('audio');
-            audioElement.setAttribute('src', 'http://vocaroo.com/media_command.php?media=s0TpKNAf0D7E&command=download_mp3');// http://picosong.com/tDGQ/
+            audioElement.setAttribute('src', 'http://localhost:8080/sounds/Space_Music.mp3');// http://picosong.com/tDGQ/
             audioElement.setAttribute('autoplay', 'autoplay');
             audioElement.loop = true;
             audioElement.load();
@@ -519,31 +520,31 @@
             }, true);
 
             var audioElementButton = document.createElement('audio');
-            audioElementButton.setAttribute('src', 'http://www.soundjay.com/button/button-19.mp3');
+            audioElementButton.setAttribute('src', 'http://localhost:8080/sounds/button-19.mp3');
             audioElementButton.load();
 
             var audioElementDeath = document.createElement('audio');
-            audioElementDeath.setAttribute('src', 'http://www.soundjay.com/button/button-12.mp3');
+            audioElementDeath.setAttribute('src', 'http://localhost:8080/sounds/button-12.mp3');
             audioElementDeath.load();
 
             var audioElementBallCollision = document.createElement('audio');
-            audioElementBallCollision.setAttribute('src', 'http://www.soundjay.com/button/button-24.mp3');
+            audioElementBallCollision.setAttribute('src', 'http://localhost:8080/sounds/button-24.mp3');
             audioElementBallCollision.load();
 
             var audioElementBallCreatePlace = document.createElement('audio');
-            audioElementBallCreatePlace.setAttribute('src', 'http://www.soundjay.com/button/button-23.mp3');
+            audioElementBallCreatePlace.setAttribute('src', 'http://localhost:8080/sounds/button-23.mp3');
             audioElementBallCreatePlace.load();
 
             var audioElementPossitiveBonus = document.createElement('audio');
-            audioElementPossitiveBonus.setAttribute('src', 'http://www.soundjay.com/button/button-14.mp3');
+            audioElementPossitiveBonus.setAttribute('src', 'http://localhost:8080/sounds/button-14.mp3');
             audioElementPossitiveBonus.load();
 
             var audioElementNegativeBonus = document.createElement('audio');
-            audioElementNegativeBonus.setAttribute('src', 'http://www.soundjay.com/button/button-4.mp3');
+            audioElementNegativeBonus.setAttribute('src', 'http://localhost:8080/sounds/button-4.mp3');
             audioElementNegativeBonus.load();
 
             var audioElementBounce = document.createElement('audio');
-            audioElementBounce.setAttribute('src', 'http://www.soundjay.com/button/button-50.mp3');
+            audioElementBounce.setAttribute('src', 'http://localhost:8080/sounds/button-50.mp3');
             audioElementBounce.load();
 
 
@@ -573,6 +574,16 @@
                 }
 
             })
+            $('#checkboxEgitim').change(function () {
+                if (this.checked == false) {
+                    tutorialOpen = 3;
+                }
+                if (this.checked == true) {
+                    tutorialOpen = 1;
+                }
+            }
+
+            )
 
 
             //Create Level Manual
@@ -737,9 +748,9 @@
             });
             function StartGame() {
                 gamediv.append('<h4 id="score" class="unselectable" style="display:none; font-family:Bangers; font-size:xx-large; color:white; z-index: 1; position:absolute; left:20px; top:20px;"></h4>',
-                               '<img id="firstHearth" class="unselectable" src="http://zeldawiki.org/images/thumb/2/2e/Recover_heart.png/100px-Recover_heart.png" style="display:none; width: 25px; height:25px; left:675px; top:0px; position:absolute; ">',
-                               '<img id="secondHearth" class="unselectable" src="http://zeldawiki.org/images/thumb/2/2e/Recover_heart.png/100px-Recover_heart.png" style="display:none; width:25px; height:25px; left:650px; top:0px; position:absolute; ">',
-                               '<img id="thirdHearth" class="unselectable" src="http://zeldawiki.org/images/thumb/2/2e/Recover_heart.png/100px-Recover_heart.png" style="display:none; width: 25px; height:25px; left:625px; top:0px; position:absolute; ">',
+                               '<img id="firstHearth" class="unselectable" src="http://localhost:8080/images/Heart.png" style="display:none; width: 25px; height:25px; left:675px; top:0px; position:absolute; ">',
+                               '<img id="secondHearth" class="unselectable" src="http://localhost:8080/images/Heart.png" style="display:none; width:25px; height:25px; left:650px; top:0px; position:absolute; ">',
+                               '<img id="thirdHearth" class="unselectable" src="http://localhost:8080/images/Heart.png" style="display:none; width: 25px; height:25px; left:625px; top:0px; position:absolute; ">',
                                '<h4 id="haritaIsmiTxt" style="left:625px; top: 40px; position:absolute; display:none;">Harita İsmi</h4>',
                                '<h4 id="MapName" style="left:625px; top:60px; position:absolute; display:none;"></h4>',
                                '<table id="tgScores" style="display:none; position: absolute; left: 800px; top: 50px; user-select: none;"><tr><th colspan="3">Scores</th></tr><tr><td>NO</td><td>Adı</td><td>Skor</td></tr></table>')
@@ -846,13 +857,11 @@
                             //Top Hareketi
                             var x = ballposition.left;
                             var y = ballposition.top;
-                            if (x < 0 || x > gamewidth - (ballSize.width + 2))
-                            {
+                            if (x < 0 || x > gamewidth - (ballSize.width + 2)) {
                                 audioElementBounce.play();
                                 dx = -dx;
                             }
-                            if (y < 0 || y > gameheight + 40)
-                            {
+                            if (y < 0 || y > gameheight + 40) {
                                 audioElementBounce.play();
                                 dy = -dy;
                             }
@@ -959,28 +968,9 @@
                                 if ($("#name").val().length == 0) {
                                     $("#name").val("İsimsiz Kahraman")
                                 }
-                                    PostData();
-         
+                                PostData();
+
                             });
-
-                                
-
-
-                            /*       $.get("http://127.0.0.1:8080/get", function (get) {
-                                       //  alert(get);
-                                       function sortfunction(a, b) {
-                                           return (b.score - a.score)
-                                       }
-                                       get.sort(sortfunction);
-                                       $.each(get, function (index, app) {
-                                           app.score
-                                           $("#scoreol").append('<li>' + 'Adı : ' + app.name + ' Skor : ' + app.score + '</li>');
-
-                                       });
-
-
-                                   });
-                                      */
 
 
 
@@ -1081,28 +1071,6 @@
                                 }
 
 
-                                /*  else if (ballposition.left + ballSize.width > (brickPositionInfo.left - 3)
-                                           && ballposition.left < (brickPositionInfo.left + brickSize.width)
-                                           && ballposition.left > (brickPositionInfo.left)
-                                           && ballposition.top < (brickPositionInfo.top + brickSize.height))
-                                  {
-                                      var genislemerandom = Math.floor(Math.random() * 5) + 1;
-                                      if (genislemerandom == 3) {
-                                          if (!genislemevar) {
-                                              genislemevar = true;
-                                              gamediv.append('<div id="genisletme" style="left:' + (brickPositionInfo.left + (brickSize.width / 2)) + 'px; top:' + (brickPositionInfo.top + brickSize.height) + 'px; width:24px; height:24px; background-color:chocolate; position:absolute;"></div>');
-                                          }
-                                      }
-                                      $(app).remove();
-
-
-                                      point += 10;
-                                      $("#score").text("Score : " + point);
-                                      dx = -dx;
-                                  }*/
-
-
-
                             });
 
                             x += dx;
@@ -1173,7 +1141,7 @@
                         }
 
                     }
-                }, 7);
+                }, 8);
 
                 // Normal uzunluğa dön
                 function tonormalsize() {
@@ -1281,19 +1249,14 @@
                 var b2 = y2 + h2;
                 var r2 = x2 + w2;
 
-                if ((b1 >= y2) && (y1 <= b2))
-                {
-                    if(dx > 0)
-                    {
-                        if(r1 >= x2 && r1 <= (x2 + 5))
-                        {
+                if ((b1 >= y2) && (y1 <= b2)) {
+                    if (dx > 0) {
+                        if (r1 >= x2 && r1 <= (x2 + 5)) {
                             return true;
                         }
                     }
-                    if(dx < 0)
-                    {
-                        if(x1 <= r2 && x1 >= (r2 - 5))
-                        {
+                    if (dx < 0) {
+                        if (x1 <= r2 && x1 >= (r2 - 5)) {
                             return true
                         }
                     }
@@ -1316,8 +1279,7 @@
                 var b2 = y2 + h2;
                 var r2 = x2 + w2;
 
-                if ((r1 >= x2) && (x1 <= r2))
-                {
+                if ((r1 >= x2) && (x1 <= r2)) {
                     if (dy > 0) {
                         if (b1 >= y2 && b1 < (y2 + 5)) {
                             return true;
@@ -1612,9 +1574,9 @@
                 maindiv.append('<button id="btnCredits" class="btnGame" style="position:absolute; left:230px; top:240px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyun Hakkında</button>');
                 maindiv.append('<button id="btnMapMenu" class="btnGame" style="position:absolute; left:230px; top:180px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Harita Menüsü</button>');
                 maindiv.append('<button id="btnCreateLevel" class="btnGame" style="position:absolute; left:230px; top:120px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Bölüm Oluştur</button>');
-                if (game || gamecredits || gamesettings )
+                if (game || gamecredits || gamesettings)
                 { maindiv.append('<button id="btnGameReturn" class="btnGame" style="position:absolute; left:230px; top:60px; font: normal 16px/normal Impact, Charcoal, sans-serif;">Oyuna Dön</button>'); }
-                
+
             });
 
 
@@ -1773,10 +1735,10 @@
                     }
                 }
             });
-            
+
             $(document).on('click', '#maindiv > #btnMapMenu', function () {
                 audioElementButton.play();
-                if (game || scoreSubmit) { $("#dialogForTravelMenuWhenGametoMaps").dialog("open"); return;}
+                if (game || scoreSubmit) { $("#dialogForTravelMenuWhenGametoMaps").dialog("open"); return; }
                 if (scoreSubmit) {
                     $("#tgScores").remove();
                     $("#ScoreSubmitDiv").empty();

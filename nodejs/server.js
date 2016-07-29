@@ -9,6 +9,8 @@ var url = 'mongodb://localhost:27017/mydb';
 var app = express();
 var path = require('path');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/bin'));
+var server = http.createServer(app);
 app.listen(8080, function () {
 	console.log('Server running at http://127.0.0.1:8080/');
 
